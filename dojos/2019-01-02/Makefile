@@ -4,7 +4,7 @@ docker-start:
 setup:
 	pip install -r requirements.txt
 
-tests:
+test:
 	pytest tests
 
 .PHONY: docker-start setup tests
