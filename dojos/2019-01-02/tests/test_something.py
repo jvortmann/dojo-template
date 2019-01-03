@@ -1,5 +1,6 @@
 from unittest import TestCase
 from src import dot_product
+from src import break_lines
 
 
 class TestDotProduct(TestCase):
@@ -35,3 +36,26 @@ class TestDotProduct(TestCase):
         with self.assertRaises(TypeError) as error:
             dot_product(['a'], [2])
         self.assertEqual(str(error.exception), "unsupported operand type(s) for +: 'int' and 'str'")
+
+
+class TestLineBreaker(TestCase):
+
+    def test_should_break_lines(self):
+        result = break_lines('Um pequeno jabuti xereta viu dez cegonhas felizes.')
+        self.assertEqual(result, """Um pequeno jabuti
+xereta viu dez
+cegonhas felizes.""")
+
+        result = break_lines('Um pequeno jabuti viu dez cegonhas.')
+        self.assertEqual(result, """Um pequeno jabuti
+viu dez cegonhas.""")
+
+    def test_should_break_lines_for_different_column_lenghts(self):
+        result = break_lines('Um pequeno jabuti xereta viu dez cegonhas felizes.', 30)
+        self.assertEqual(result, """Um pequeno jabuti xereta viu
+dez cegonhas felizes.""")
+
+    def test_should_break_lines_for_different_column_lenghts(self):
+        result = break_lines('Um pequeno jabuti xereta viu dez cegonhas felizes.', 30)
+        self.assertEqual(result, """Um pequeno jabuti xereta viu
+dez cegonhas felizes.""")
