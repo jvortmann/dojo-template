@@ -7,9 +7,10 @@
 
   > As tecnologias utilizadas devem ser definidas antes do Dojo. Um participante deve se responsabilizar por montar o ambiente necessário para a execução do código para as tecnologias definidas.
 
-  - Definir problema e formato do Dojo [10 min]
-  - Resolução do problema [90 min]
-  - Retrospectiva [10 min]
+  > O problema deve ser votado antes do dojo. A divulgação deve acontecer apenas na hora do dojo.
+
+  - Resolução do problema [55 min]
+  - Retrospectiva [5 min]
 
 #### Formatos
 
