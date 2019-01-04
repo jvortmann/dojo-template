@@ -27,15 +27,15 @@ Desenvolva um programa que, dado dois vetores de dimensão n, retorne o produto 
 
 #### Problema 2
 
-Definimos dois vetores A e B de dimensão n em termos de componentes como:
+Escreva um programa em que dado uma frase e a quantidade de colunas que podem ser exibidas na tela, faça a quebra de linhas sem quebrar as palavras.
 
-A = (a1, a2, a3, ..., an) e B = (b1, b2, b3, ..., bn)
+Por exemplo, se passarmos a frase "Um pequeno jabuti xereta viu dez cegonhas felizes." e pedirmos para ela ser exibida em 20 colunas, teremos como resposta:
 
-O produto escalar entre esses vetores é descrito como:
+Um pequeno jabuti
 
-A . B = a1 * b1 + a2 * b2 + a3 * b3 + ... + an * bn
+xereta viu dez
 
-Desenvolva um programa que, dado dois vetores de dimensão n, retorne o produto escalar entre eles.
+cegonhas felizes.
 
 
 ## Retro
