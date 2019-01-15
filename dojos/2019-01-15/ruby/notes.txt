@@ -1,0 +1,3 @@
+Ideias:
+ - Colocar possiveis valores como parametro para o ATM
+ - Colocar notas de 5 e 2 (testar com saque de 18)
