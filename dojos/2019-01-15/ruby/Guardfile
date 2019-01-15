@@ -1,0 +1,5 @@
+## Uncomment and set this to only include directories you want to watch
+guard :rspec, cmd: "bundle exec rspec --format #{ENV["FORMAT"] || "documentation"} --format Nc" do
+  watch(%r{^spec/.+_spec\.rb$})
+  watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
+end
