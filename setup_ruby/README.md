@@ -1,9 +1,30 @@
-After the problem folder is alredy created at `../dojos/{problem}`
+# DOJO [DATA]
 
-Copy code to problem folder: `cp -r . ../dojos/{problem}/ruby`
-Go to problem folder: `cd ../dojos/{problem}/ruby`
+[![Ruby Version](https://img.shields.io/badge/ruby-[RUBY_VERSION]-green.svg)](https://img.shields.io/badge/ruby-[RUBY_VERSION]-green.svg)
 
-Install ruby 2.6: `rbenv install 2.6.0`
-Install bundler: `gem install bundler`
+## Howto
 
-Install dependencies: `bundle`
+### How to install correct ruby version:
+  - `rbenv install [RUBY_VERSION]`
+
+### How to setup dependencies:
+  - `gem install bundler`
+  - `bundle`
+
+### How to run the tests:
+  - `rspec`
+
+### How to automatically run tests on save:
+  - `guard`
+
+
+## [PROBLEM]
+
+
+## Retro
+
+#### O que aprendemos hoje?
+
+#### O que foi bom
+
+#### O que podemos melhorar
