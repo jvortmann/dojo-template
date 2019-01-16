@@ -25,13 +25,13 @@ else
   [ ! -d "$folder" ] && mkdir -p "$folder" && cp -r "$setup_base/" "$folder/"
 
   echo ">>> Set date"
-  sed "s/\[DATA\]/$(date "+%Y-%m-%d %H:%M:%S")/g" "$setup_base/README.md" > "$folder/README_tmp.md"
+  sed "s/\\[DATA\\]/$(date "+%Y-%m-%d %H:%M:%S")/g" "$setup_base/README.md" > "$folder/README_tmp.md"
 
   echo ">>> Set Problem"
   sed "s/\\[PROBLEM\\]/$problem/g" "$folder/README_tmp.md" > "$folder/README.md"
 
   echo ">>> Set Ruby Version"
-  sed "s/\[RUBY_VERSION\]/$(cat $setup_base/.ruby-version)/g" "$folder/README.md" > "$folder/README_tmp.md"
+  sed "s/\\[RUBY_VERSION\\]/$(cat "$setup_base/.ruby-version")/g" "$folder/README.md" > "$folder/README_tmp.md"
 
   mv "$folder/README_tmp.md" "$folder/README.md"
 
