@@ -20,6 +20,10 @@
 
   - `Kata`: Nesse formato existe a figura do apresentador. Ele deve demonstrar uma solução pronta, previamente desenvolvida.
 
+#### Setup de novos problemas
+  `./setup.sh "Nome do Problem" "linguagem"`
+
+  Ex: `./setup.sh "Caixa Eletronico" ruby`
 
 #### Onde encontrar os problemas para resolver
 
