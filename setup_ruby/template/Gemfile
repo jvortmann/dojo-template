@@ -1,13 +1,14 @@
-source "https://artifactory.globoi.com/artifactory/api/gems/gem-repos/"
+source "https://rubygems.org"
 
 ruby "2.6"
 
+#irb
 gem "awesome_print"
 
+# rspec
 gem "rspec"
 gem "rspec-collection_matchers"
 gem "rspec-nc"
-gem "timecop"
 
 # guard
 gem "guard"

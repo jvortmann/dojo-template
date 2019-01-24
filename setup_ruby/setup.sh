@@ -22,21 +22,18 @@ if [ -d "$folder" ]; then
   echo ">>> Problem folder for '$problem' already exist at '$folder'"
 else
   echo ">>> Create problem folder for '$problem' at '$folder'"
-  [ ! -d "$folder" ] && mkdir -p "$folder" && cp -r "$setup_base/" "$folder/"
+  [ ! -d "$folder" ] && mkdir -p "$folder" && cp -r "$setup_base/template/" "$folder/"
 
   echo ">>> Set date"
-  sed "s/\\[DATA\\]/$(date "+%Y-%m-%d %H:%M:%S")/g" "$setup_base/README.md" > "$folder/README_tmp.md"
+  sed "s/\\[DATA\\]/$(date "+%Y-%m-%d %H:%M:%S")/g" "$setup_base/template/README.md" > "$folder/README_tmp.md"
 
   echo ">>> Set Problem"
   sed "s/\\[PROBLEM\\]/$problem/g" "$folder/README_tmp.md" > "$folder/README.md"
 
   echo ">>> Set Ruby Version"
-  sed "s/\\[RUBY_VERSION\\]/$(cat "$setup_base/.ruby-version")/g" "$folder/README.md" > "$folder/README_tmp.md"
+  sed "s/\\[RUBY_VERSION\\]/$(cat "$setup_base/template/.ruby-version")/g" "$folder/README.md" > "$folder/README_tmp.md"
 
   mv "$folder/README_tmp.md" "$folder/README.md"
-
-  echo ">>> Remove setup script"
-  [ -e "$folder/setup.sh" ] && rm "$folder/setup.sh"
 fi
 
 echo ""
