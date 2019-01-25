@@ -1,4 +1,4 @@
-.PHONY: all setup_${language} build build_${language}
+.PHONY: all setup_${language} build build_${language} help
 
 all: setup_${language}
 
