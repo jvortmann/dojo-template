@@ -7,6 +7,8 @@ base_path ?= ${setup_base}/../dojos
 canonical_problem = $(shell echo ${problem} | tr '[:upper:]' '[:lower:]'| tr ' ' '_')
 folder = ${base_path}/${canonical_problem}/${language}
 
+PROBLEM_ERROR = $(error "Problem name was not defined. Use 'problem="Problem Name"' to define it.")
+
 all: build setup
 
 setup: ${folder} ${folder}/lib/ ${folder}/spec/ ${folder}/Makefile ${folder}/.irbrc ${folder}/README.md
@@ -16,7 +18,7 @@ build:
 	@docker build ${setup_base}/build/ -t dojo/${language}:${version}
 
 ${folder}:
-	$(if ${problem},,$(error "Problem name was not defined. Use problem='Problem Name' to define it."))
+	$(if ${problem},,${PROBLEM_ERROR})
 	@echo "Creating '${problem}' for '${language}' at '${folder}'"
 	@mkdir -p ${folder}
 
