@@ -1,6 +1,6 @@
 .PHONY: test watch console login
 
-DOCKER_RUN = docker run -it -v ${PWD}:/dojo/problem dojo/ruby
+DOCKER_RUN = docker run --rm -it -v ${PWD}:/dojo/problem dojo/ruby
 
 test:
 	@${DOCKER_RUN} bundle exec rspec
