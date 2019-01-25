@@ -3,7 +3,7 @@
 setup_base := ${CURDIR}
 language := ruby
 version ?= $(shell cat ${setup_base}/template/.ruby-version)
-base_path ?= ${setup_base}/../dojos
+base_path ?= ${setup_base}/../../dojos
 canonical_problem = $(shell echo ${problem} | tr '[:upper:]' '[:lower:]'| tr ' ' '_')
 folder = ${base_path}/${canonical_problem}/${language}
 
