@@ -1,4 +1,4 @@
-.PHONY: all setup build
+.PHONY: all setup build help
 
 setup_base := ${CURDIR}
 language := ruby
@@ -42,3 +42,15 @@ ${folder}/README.md: ${folder}
 	sed "s/\\[PROBLEM\\]/${problem}/g" | \
 	sed "s/\\[RUBY_VERSION\\]/${version}/g" > \
 	"${folder}/README.md"
+
+help:
+	@echo "Help:"
+	@echo
+	@echo "Build and Setup:"
+	@echo "> make problem='Name of the Problem' [version=2.6.0]"
+	@echo
+	@echo "Build:"
+	@echo "> make build [version=2.6.0]"
+	@echo
+	@echo "Setup:"
+	@echo "> make setup problem='Name of the Problem'"
