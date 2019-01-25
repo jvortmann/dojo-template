@@ -1,4 +1,5 @@
-FROM ruby:2.6.0
+ARG VERSION=latest
+FROM ruby:${VERSION}
 
 RUN mkdir -p /dojo/problem
 ADD Gemfile /dojo/Gemfile
