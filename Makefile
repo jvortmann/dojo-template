@@ -1,20 +1,20 @@
-.PHONY: all setup_${language} build build_${language} help
+.PHONY: all setup/${language} build build/${language} help
 
 LANGUAGE_ERROR = $(error "Language was not defined. Use 'language=ruby' to define it.")
 PROBLEM_ERROR = $(error "Problem name was not defined. Use 'problem="Problem Name"' to define it.")
 
-all: build setup_${language}
+all: build setup/${language}
 
-setup: setup_${language}
+setup: setup/${language}
 
-setup_${language}:
+setup/${language}:
 	$(if ${language},,${LANGUAGE_ERROR})
 	$(if ${problem},,${PROBLEM_ERROR})
-	@$(MAKE) setup -C setup_${language}
+	@$(MAKE) setup -C setup/${language}
 
-build: setup_${language}/build
+build: setup/${language}/build
 	$(if ${language},,${LANGUAGE_ERROR})
-	@$(MAKE) build -C setup_${language}
+	@$(MAKE) build -C setup/${language}
 
 help:
 	@echo "Help:"
