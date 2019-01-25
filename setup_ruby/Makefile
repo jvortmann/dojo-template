@@ -12,12 +12,12 @@ all: build setup
 setup: ${folder} ${folder}/lib/ ${folder}/spec/ ${folder}/Makefile ${folder}/.irbrc ${folder}/README.md
 
 build:
-	@echo "Building Image"
+	@echo "Building image for '${language}' (use can specify the version using: version=2.6.0)"
 	@docker build ${setup_base}/build/ -t dojo/${language}:${version}
 
 ${folder}:
 	$(if ${problem},,$(error "Problem name was not defined. Use problem='Problem Name' to define it."))
-	@echo "Creating '${problem}' at ${folder}"
+	@echo "Creating '${problem}' for '${language}' at '${folder}'"
 	@mkdir -p ${folder}
 
 ${folder}/lib: ${folder}
