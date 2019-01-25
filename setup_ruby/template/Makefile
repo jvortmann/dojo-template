@@ -1,11 +1,11 @@
 test:
-	docker run -it -v ${PWD}:/dojo/problem dojo/ruby bundle exec rspec
+	@docker run -it -v ${PWD}:/dojo/problem dojo/ruby bundle exec rspec
 
 watch:
-	docker run -it -v ${PWD}:/dojo/problem dojo/ruby bundle exec guard --guardfile ../Guardfile
+	@docker run -it -v ${PWD}:/dojo/problem dojo/ruby bundle exec guard --guardfile ../Guardfile
 
 console:
-	docker run -it -v ${PWD}:/dojo/problem dojo/ruby irb
+	@docker run -it -v ${PWD}:/dojo/problem dojo/ruby irb
 
 login:
-	docker run -it -v ${PWD}:/dojo/problem dojo/ruby bash
+	@docker run -it -v ${PWD}:/dojo/problem dojo/ruby bash
