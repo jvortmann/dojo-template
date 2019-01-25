@@ -4,18 +4,17 @@
 
 ## Howto
 
-### How to install correct ruby version:
-  - `rbenv install [RUBY_VERSION]`
-
-### How to setup dependencies:
-  - `gem install bundler`
-  - `bundle`
-
 ### How to run the tests:
-  - `rspec`
+  - `make test`
 
-### How to automatically run tests on save:
-  - `guard`
+### How to watch code and tests and run the tests automatically:
+  - `make watch`
+
+### How to open a console (irb):
+  - `make console`
+
+### How to open a login in the docker image:
+  - `make login`
 
 
 ## Problema: [PROBLEM]
