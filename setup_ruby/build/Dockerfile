@@ -1,6 +1,10 @@
 FROM ruby:2.6.0
 
-RUN gem install bundler
+RUN mkdir -p /dojo/problem
+ADD Gemfile /dojo/Gemfile
+ADD Guardfile /dojo/Guardfile
 
-RUN mkdir /problem
-WORKDIR /problem
+WORKDIR /dojo/problem
+
+RUN gem install bundler
+RUN bundle --gemfile /dojo/Gemfile

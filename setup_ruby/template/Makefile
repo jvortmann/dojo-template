@@ -1,14 +1,11 @@
-dojo:
-	docker run -it -v ${PWD}:/problem dojo/ruby bash
-
-setup:
-	bundle
-
 test:
-	bundle exec rspec
+	docker run -it -v ${PWD}:/dojo/problem dojo/ruby bundle exec rspec
 
 watch:
-	bundle exec guard
+	docker run -it -v ${PWD}:/dojo/problem dojo/ruby bundle exec guard --guardfile ../Guardfile
 
 console:
-	irb
+	docker run -it -v ${PWD}:/dojo/problem dojo/ruby irb
+
+login:
+	docker run -it -v ${PWD}:/dojo/problem dojo/ruby bash
