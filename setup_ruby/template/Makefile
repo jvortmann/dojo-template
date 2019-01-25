@@ -1,13 +1,15 @@
 .PHONY: test watch console login
 
+DOCKER_RUN = docker run -it -v ${PWD}:/dojo/problem dojo/ruby
+
 test:
-	@docker run -it -v ${PWD}:/dojo/problem dojo/ruby bundle exec rspec
+	@${DOCKER_RUN} bundle exec rspec
 
 watch:
-	@docker run -it -v ${PWD}:/dojo/problem dojo/ruby bundle exec guard --guardfile ../Guardfile
+	@${DOCKER_RUN} bundle exec guard --guardfile ../Guardfile
 
 console:
-	@docker run -it -v ${PWD}:/dojo/problem dojo/ruby irb
+	@${DOCKER_RUN} irb
 
 login:
-	@docker run -it -v ${PWD}:/dojo/problem dojo/ruby bash
+	@${DOCKER_RUN} bash
