@@ -14,7 +14,7 @@ base_path="$folder_base"
 language="ruby"
 setup_base=$(dirname -- "$0")
 
-[ ! -n "$folder_base" ] && base_path="$setup_base/../dojos"
+[ -z "$folder_base" ] && base_path="$setup_base/../dojos"
 
 folder="$base_path/$(echo "$problem" | tr '[:upper:]' '[:lower:]'| tr ' ' '_')/$language"
 
