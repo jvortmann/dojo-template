@@ -20,10 +20,27 @@
 
   - `Kata`: Nesse formato existe a figura do apresentador. Ele deve demonstrar uma solução pronta, previamente desenvolvida.
 
-#### Setup de novos problemas
-  `make problem="Nome do Problem" language="linguagem"`
+#### Setup de novos problemas (se a linguagem tem setup)
 
-  Ex: `make problem="Caixa Eletronico" language=ruby`
+	`make language='linguagem' url='http://dojopuzzles.com/problemas/exibe/{problem}/' [problem='Nome do Problem']`
+
+	Ex: `make language='linguagem' url='http://dojopuzzles.com/problemas/exibe/jokenpo/'`
+
+	or
+
+	Ex: `make language='linguagem' problem='Nome do Problem'`
+
+#### Setup de novos problemas (quando a linguagem não tem setup)
+	`make setup url='http://dojopuzzles.com/problemas/exibe/{problem}/' [problem='Nome do Problem']`
+
+	Ex: `make setup url='http://dojopuzzles.com/problemas/exibe/jokenpo/'`
+
+	or
+
+	Ex: `make setup problem='Nome do Problem'`
+
+#### Precisa de ajusta com as tasks?
+	`make help`
 
 #### Onde encontrar os problemas para resolver
 
