@@ -3,7 +3,6 @@
 setup_base := ${CURDIR}
 language := ruby
 version ?= $(shell cat ${setup_base}/template/.ruby-version)
-base_path ?= ${setup_base}/../../dojos
 problem_folder = ${folder}/${language}
 
 PROBLEM_ERROR = $(error "Problem name was not defined. Use 'problem="Problem Name"' to define it.")
