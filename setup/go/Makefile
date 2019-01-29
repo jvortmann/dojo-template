@@ -35,7 +35,6 @@ ${problem_folder}/README.md: ${problem_folder}
 	@echo "Setting Readme"
 	@sed "s#\\[DATA\\]#$(shell date "+%Y-%m-%d %H:%M:%S")#g" "${setup_base}/template/README.md" | \
 	sed "s#\\[PROBLEM\\]#${problem}#g" | \
-	sed "s#\\[RUBY_VERSION\\]#${version}#g" | \
 	sed "s#\\[URL\\]#${url}#g" > \
 	"${problem_folder}/README.md"
 
