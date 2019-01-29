@@ -1,6 +1,6 @@
 FROM golang:1.11.5-alpine
 
-ENV GOPATH $GOPATH:/dojo/src
+ENV GOPATH $GOPATH:/dojo/problem
 
 RUN apk update
 RUN apk add --no-cache git
