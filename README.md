@@ -22,22 +22,22 @@
 
 #### Setup de novos problemas (se a linguagem tem setup)
 
-	`make language='linguagem' url='http://dojopuzzles.com/problemas/exibe/{problem}/' [problem='Nome do Problem']`
+	`make language='linguagem' url='http://dojopuzzles.com/problemas/exibe/{problem}/' [problem='Nome do Problema']`
 
 	Ex: `make language='linguagem' url='http://dojopuzzles.com/problemas/exibe/jokenpo/'`
 
 	or
 
-	Ex: `make language='linguagem' problem='Nome do Problem'`
+	Ex: `make language='linguagem' problem='Nome do Problema'`
 
 #### Setup de novos problemas (quando a linguagem não tem setup)
-	`make setup url='http://dojopuzzles.com/problemas/exibe/{problem}/' [problem='Nome do Problem']`
+	`make setup url='http://dojopuzzles.com/problemas/exibe/{problem}/' [problem='Nome do Problema']`
 
 	Ex: `make setup url='http://dojopuzzles.com/problemas/exibe/jokenpo/'`
 
 	or
 
-	Ex: `make setup problem='Nome do Problem'`
+	Ex: `make setup problem='Nome do Problema'`
 
 #### Precisa de ajusta com as tasks?
 	`make help`
