@@ -12,6 +12,16 @@
 
 #### O que aprendemos hoje?
 
+- Manipulação de strings em Go
+- Mapas em Go
+- Linguagem Go
+
 #### O que foi bom
 
+- Tempo ideal para resolução do problema
+- Contribuição dos integrantes
+- Problema legal
+
 #### O que podemos melhorar
+
+- Utilizar TDD e babysteps melhor
