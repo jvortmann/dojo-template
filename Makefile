@@ -1,4 +1,4 @@
-.PHONY: all create setup/${language} build  help
+.PHONY: all create setup/${language} build dates help
 
 LANGUAGE_ERROR = $(error "Language was not defined. Use 'language=ruby' to define it.")
 PROBLEM_ERROR = $(error "Problem name was not defined. Use 'url="http://dojopuzzles.com/problemas/exibe/{problem}/" or problem="Problem Name"' to define it.")
@@ -31,6 +31,9 @@ build: setup/${language}/build
 	$(if ${language},,${LANGUAGE_ERROR})
 	@$(MAKE) build -C setup/${language}
 
+dates:
+	@grep "# DOJO" -R ${base_path} | sed "s/.*dojos\/\(.*\)\/README.md:# DOJO \(.*\)$$/dojos\/\1$$(printf '\t')\2/"
+
 ${folder}:
 	$(if ${problem},,${PROBLEM_ERROR})
 	@echo "Creating '${problem}' at '${folder}'"
@@ -56,3 +59,6 @@ help:
 	@echo "> make setup url='http://dojopuzzles.com/problemas/exibe/{problem}/' language=ruby [version=2.6.0]"
 	@echo "or"
 	@echo "> make setup problem='Name of the Problem' language=ruby [version=2.6.0]"
+	@echo
+	@echo "List dojo dates:"
+	@echo "> make dates"
