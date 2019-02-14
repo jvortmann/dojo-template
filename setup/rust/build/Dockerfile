@@ -1,4 +1,5 @@
-FROM rust:1.31
+ARG VERSION=latest
+FROM rust:${VERSION}
 
 RUN mkdir -p /dojo/problem
 
