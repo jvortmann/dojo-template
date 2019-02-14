@@ -8,7 +8,7 @@ PROBLEM_ERROR = $(error "Problem name was not defined. Use 'problem="Problem Nam
 
 all: build setup
 
-setup: ${problem_folder} ${problem_folder}/src/main.rs ${problem_folder}/Makefile ${problem_folder}/README.md ${problem_folder}/Cargo.toml
+setup: ${problem_folder} ${problem_folder}/src/ ${problem_folder}/Makefile ${problem_folder}/README.md ${problem_folder}/Cargo.toml
 
 build:
 	@echo "Building image for '${language}'"
@@ -18,18 +18,17 @@ ${problem_folder}:
 	$(if ${problem},,${PROBLEM_ERROR})
 	@echo "Creating setup for '${language}' at '${problem_folder}'"
 	@mkdir -p ${problem_folder}
-	@mkdir -p ${problem_folder}/src/
 
-${problem_folder}/src/main.rs: ${problem_folder}
-	@echo "Setting source file"
-	@cp ${setup_base}/template/src/main.rs /${problem_folder}/src
+${problem_folder}/src:
+	@echo "Setting Source folder"
+	@cp -r ${setup_base}/template/src ${problem_folder}/
 
 ${problem_folder}/Cargo.toml: ${problem_folder}
-	@echo "Setting source file"
+	@echo "Setting Manifest file"
 	@cp ${setup_base}/template/Cargo.toml ${problem_folder}/
 
 ${problem_folder}/Makefile: ${problem_folder}
-	@echo "Creating Makefile"
+	@echo "Setting Makefile"
 	@cp ${setup_base}/template/Makefile ${problem_folder}/Makefile
 
 ${problem_folder}/README.md: ${problem_folder}
