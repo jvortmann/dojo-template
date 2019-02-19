@@ -3,6 +3,14 @@
 > Repositório para amarzenamento dos códigos criados em Dojos realizados na Globo.com de Porto Alegre
 
 
+#### Manifesto
+
+1. O dojo tem duração de 1h30.
+2. Uma dupla fica responsável pelo código. Uma pessoa coda e a outra auxilia (Piloto e copiloto).
+3. A dupla rotaciona a cada 7 minutos. O copiloto vira piloto e outra pessoa entra como copiloto.
+4. No começo é acordado se apenas a dupla opina no código, ou se os demais também podem.
+5. Ao final há uma retrospectiva para levantar os pontos positivos e negativos do dojo, e definir os próximos organizadores.
+
 #### Agenda dos encontros
 
 > As tecnologias utilizadas devem ser definidas antes do Dojo. Um participante deve se responsabilizar por montar o ambiente necessário para a execução do código para as tecnologias definidas.
