@@ -6,6 +6,7 @@ gem "awesome_print"
 # rspec
 gem "rspec"
 gem "rspec-collection_matchers"
+gem "rspec-nc"
 
 # guard
 gem "guard"
