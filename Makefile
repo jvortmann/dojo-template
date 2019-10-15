@@ -32,7 +32,7 @@ build: setup/${language}/build
 	@$(MAKE) build -C setup/${language}
 
 dates:
-	@grep "# DOJO" -R ${base_path} | sed "s/.*dojos\/\(.*\)\/README.md:# DOJO \(.*\)$$/dojos\/\1$$(printf '\t')\2/"
+	@grep "# DOJO" -R ${base_path} | sed "s/.*dojos\/\(.*\)\/README.md:# DOJO \(.*\)$$/\1 \2$$/" | xargs printf "\033[37m%-20s\033[0m  \033[34m%-20s\033[0m%s\n"
 
 ${folder}:
 	$(if ${problem},,${PROBLEM_ERROR})
