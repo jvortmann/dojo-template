@@ -1,4 +1,4 @@
-# DOJO 02/01/2019
+# DOJO 2019-01-02 12:00:10
 
 [![Python Version](https://img.shields.io/badge/python-3.7.2-green.svg)](https://img.shields.io/badge/python-3.7.2-green.svg)
 
