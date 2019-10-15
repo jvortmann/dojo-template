@@ -1,4 +1,4 @@
-# Dojo 2019-07-04 - Elixir
+# DOJO 2019-07-04 16:17:17
 
 ## O que aprendemos Hoje?
 * Nova linguagem Elixir
