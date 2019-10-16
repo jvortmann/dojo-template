@@ -12,7 +12,7 @@ all: build setup
 setup: ${problem_folder} ${problem_folder}/lib/ ${problem_folder}/spec/ ${problem_folder}/Makefile ${problem_folder}/.irbrc ${problem_folder}/README.md
 
 build:
-	@echo "Building image for '${language}' (use can specify the version using: version=${version})"
+	@echo "Building image for '${language}:${version}' (use can specify the version using: version=${version})"
 	@docker build ${setup_base}/build/ --build-arg VERSION=${version} -t dojo/${language}:${version}
 
 ${problem_folder}:
