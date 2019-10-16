@@ -7,14 +7,14 @@ context_name = "dojo"
 .PHONY: all create setup/${language} build dates help description how_to
 
 LANGUAGE_ERROR = $(error "Language was not defined. Use 'language=ruby' to define it.")
-PROBLEM_ERROR = $(error "Problem name was not defined. Use 'url="http://dojopuzzles.com/problemas/exibe/{problem}/" or problem="Problem Name"' to define it.")
+PROBLEM_ERROR = $(error "Problem name was not defined. Use 'url="http://some_url.com/to/a/{problem}/" or problem="Problem Name"' to define it.")
 
 base_path ?= ${CURDIR}/dojos
 
 ifeq (${url},)
 problem := $(shell echo ${problem} | tr '[:upper:]' '[:lower:]'| tr ' ' '_')
 else
-override problem = $(subst /,,$(subst http://dojopuzzles.com/problemas/exibe/,,${url}))
+override problem = $(shell echo "${url}" | sed -E "s/\/([^/]+)\/?$$/ \1/" | awk '{print $$2}')
 export problem
 endif
 
