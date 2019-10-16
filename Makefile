@@ -45,6 +45,11 @@ build: setup/${language}/build
 dates:
 	@grep "# DOJO" -R ${base_path} | sed "s/.*dojos\/\(.*\)\/\(.*\)\/README.md:# DOJO \(.*\)$$/\3 \1 \2/" | xargs -L1 printf "\033[34m%-11s\033[0m%s \033[37m%-25s\033[0m%-8s\n" | sort
 
+## histogram: show histogram of dojos per month
+histogram:
+	@echo Dojos per month:
+	@$(MAKE) dates | cut -d'-' -f1,2 | uniq -c | while read -r amount date; do echo "$$date `jot -b '#' - 1 $$amount | xargs | tr -d ' '` $$amount"; done | tr -dc '[[:print:]]\n' | cut -c5-
+
 ${folder}:
 	$(if ${problem},,${PROBLEM_ERROR})
 	@echo "Creating '${problem}' at '${folder}'"
