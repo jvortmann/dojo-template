@@ -1,4 +1,4 @@
-ARG VERSION=latest
+ARG VERSION
 FROM ruby:${VERSION}
 
 RUN mkdir -p /dojo/problem
