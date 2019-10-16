@@ -13,7 +13,7 @@
 
 #### Agenda dos encontros
 
-> As tecnologias utilizadas devem ser definidas antes do Dojo. Um participante deve se responsabilizar por montar o ambiente necessário para a execução do código para as tecnologias definidas.
+> As tecnologias utilizadas devem ser definidas antes do Dojo. Um participante deve se responsabilizar por montar o ambiente necessário para a execução do código para as tecnologias definidas. O repositório provê uma série de task para auxiliar o setup e gerar pastas consistentes de problemas (`make help`)
 
 > O problema deve ser votado antes do dojo. A divulgação deve acontecer apenas na hora do dojo.
 
