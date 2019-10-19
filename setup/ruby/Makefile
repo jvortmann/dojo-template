@@ -2,7 +2,7 @@
 
 setup_base := ${CURDIR}
 language := ruby
-version ?= 2.6.3 # default version if unspecified
+version ?= 2.6.5 # default version if unspecified
 problem_folder = ${folder}/${language}
 
 PROBLEM_ERROR = $(error "Problem name was not defined. Use 'problem="Problem Name"' to define it.")
