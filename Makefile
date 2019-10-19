@@ -44,7 +44,7 @@ build: setup/${language}/build
 
 ## dates: list previous dojos with dates
 dates:
-	@grep "# DOJO" -R ${base_path} | sed "s/.*dojos\/\(.*\)\/\(.*\)\/README.md:# DOJO \(.*\)$$/\3 \1 \2/" | xargs -L1 printf "\033[34m%-11s\033[0m%s \033[37m%-25s\033[0m%-8s\n" | sort
+	@grep "# DOJO" -R ${base_path} | sed "s/.*dojos\/\(.*\)\/\(.*\)\/README.md:# DOJO \(.*\)$$/\3 \1 \2/" | xargs -L1 printf "\033[34m%-11s\033[0m%s \033[37m%-25s\033[33m%-8s\033[0m\n" | sort
 
 ## histogram: show histogram of dojos per month
 histogram:
