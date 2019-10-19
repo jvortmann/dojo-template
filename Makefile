@@ -49,7 +49,7 @@ dates:
 ## histogram: show histogram of dojos per month
 histogram:
 	@echo Dojos per month:
-	@$(MAKE) dates | cut -d'-' -f1,2 | uniq -c | while read -r amount date; do echo "$$date `jot -b '#' - 1 $$amount | xargs | tr -d ' '` $$amount"; done | tr -dc '[[:print:]]\n' | cut -c5-
+	@$(MAKE) dates | cut -d'-' -f1,2 | uniq -c | while read -r amount date; do echo "$$date $$amount `jot -b '#' - 1 $$amount | xargs | tr -d ' '`"; done | tr -dc '[[:print:]]\n' | cut -c5- | xargs printf "\033[34m %-8s \033[37m%-2d \033[32m%s\033[0m\n"
 
 ${folder}:
 	$(if ${problem},,${PROBLEM_ERROR})
