@@ -1,8 +1,8 @@
 .PHONY: test watch console login
 
 LANGUAGE := ruby
-RUBY_VERSION := [RUBY_VERSION]
-DOCKER_RUN := docker run --rm -it -v ${PWD}:/dojo/problem dojo/${LANGUAGE}:${RUBY_VERSION}
+VERSION := [VERSION]
+DOCKER_RUN := docker run --rm -it -v ${PWD}:/dojo/problem dojo/${LANGUAGE}:${VERSION}
 
 test:
 	@${DOCKER_RUN} bundle exec rspec

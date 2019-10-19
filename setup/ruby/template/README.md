@@ -1,6 +1,6 @@
 # DOJO [DATA]
 
-[![Ruby Version](https://img.shields.io/badge/ruby-[RUBY_VERSION]-green.svg)](https://img.shields.io/badge/ruby-[RUBY_VERSION]-green.svg)
+[![Ruby Version](https://img.shields.io/badge/ruby-[VERSION]-green.svg)](https://img.shields.io/badge/ruby-[VERSION]-green.svg)
 
 ## Howto
 
