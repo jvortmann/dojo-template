@@ -1,4 +1,4 @@
-##>> setup dojo (accepts 'url', 'problem' and 'language'[with version] params)
+##>> setup dojo (accepts 'url', 'problem' and 'language (defaults to python)' [with version] params)
 context_file = $(word 1,$(abspath $(MAKEFILE_LIST)))
 context_name = "dojo"
 
@@ -57,7 +57,7 @@ ${folder}:
 	@mkdir -p ${folder}
 
 ## help: show this message
-help: description tasks_with_examples description tasks_without_examples
+help: description tasks_with_examples tasks_without_examples
 	@echo
 	@$(MAKE) how_to
 
@@ -65,18 +65,18 @@ tasks_without_examples:
 	@sed -nE 's/^## (.*): ([^>]*)$$/"\1" "\2"/p' $(context_file) | xargs printf "\033[34m %-20s\033[0m%s\n\033[0m"
 
 tasks_with_examples:
-	@sed -nE 's/^## (.*): (.*) (\[>.*\])$$/"\1" "\2" "\3"/p' $(context_file) | xargs printf "\033[34m %-20s\033[0m%s\n\033[33m\t\t\t%-48s\n\033[0m"
+	@sed -nE 's/^## (.*): (.*) (\[>.*\])$$/"\1" "\2" "\3"/p' $(context_file) | xargs printf "\033[34m %-20s\033[0m%s\n\033[35m\t\t\t%-48s\n\033[0m"
 
 ## description: show description of the project
 description:
-	@sed -nE 's/^##>> (.*)$$/"\1"/p' $(context_file) | xargs printf "\033[37m%-20s\033[0m \033[34m%-20s\033[0m%s\n" "[$(context_name)]"
+	@sed -nE 's/^##>> (.*)$$/"\1"/p' $(context_file) | xargs printf "\033[37m%-20s\033[0m \033[33m%-20s\033[0m%s\n" "[$(context_name)]"
 
 ## how_to: show how to
 how_to:
 	@echo "How to:"
 	@echo
-	@echo "Examples of full command to create a problem folder for a particular language (ruby)"
-	@echo "> make url='http://dojopuzzles.com/problemas/exibe/{problem}/' language=ruby [version=2.6.0]"
+	@echo "Examples of full command to create a problem folder for a particular version of ruby language"
+	@echo "> make url='http://dojopuzzles.com/problemas/exibe/{problem}/' language=ruby version=2.6.0"
 	@echo "or"
-	@echo "> make problem='Problem name' language=ruby [version=2.6.0]"
+	@echo "> make problem='Problem name' language=ruby version=2.6.0"
 	@echo
