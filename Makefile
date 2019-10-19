@@ -10,6 +10,7 @@ LANGUAGE_ERROR = $(error "Language was not defined. Use 'language=ruby' to defin
 PROBLEM_ERROR = $(error "Problem name was not defined. Use 'url="http://some_url.com/to/a/{problem}/" or problem="Problem Name"' to define it.")
 
 base_path ?= ${CURDIR}/dojos
+language ?= python #default language to python
 
 ifeq (${url},)
 problem := $(shell echo ${problem} | tr '[:upper:]' '[:lower:]'| tr ' ' '_')
