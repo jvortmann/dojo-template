@@ -8,3 +8,7 @@ badge: ${folder}/README.md
 ${folder}/.${language}-version: ${folder}
 	@echo "Setting ${language} version file"
 	@echo ${version} > ${folder}/.${language}-version
+
+${folder}/Makefile: ${folder}
+	@echo "Setting Makefile"
+	@sed "s/\\[VERSION\\]/${version}/g" "${setup_base}/template/Makefile" > ${folder}/Makefile
