@@ -1,6 +1,6 @@
 -include ../prerequisites.mk
 
-.PHONY: all setup folder_exists build
+.PHONY: all setup folder_exists source_files test_files console_config build
 
 ##>> setup problem with ruby
 
@@ -10,23 +10,10 @@ version ?= 2.6.5# default version if unspecified
 
 -include ../tasks_for_language_version.mk
 
-.DEFAULT_GOAL := all
 
-FOLDER_ERROR = $(error "Folder was not specified. Use 'folder="absolute/path/to/setup" to point to an existing folder")
-
-## all: [default] build docker image and setup problem folder
-all: build setup
-
-## setup: setup problem folder
-setup: folder_exists ${folder}/lib/ ${folder}/spec/ ${folder}/Makefile ${folder}/.irbrc ${folder}/.${language}-version badge
-
-folder_exists:
-	$(if ${folder},,${FOLDER_ERROR})
-
-## build: build docker image
-build:
-	@echo "Building image for '${language}:${version}' (you can specify the version using: version=${version})"
-	@docker build ${setup_base}/build/ --build-arg VERSION=${version} -t dojo/${language}:${version}
+source_files: ${folder}/lib
+test_files: ${folder}/spec
+console_config: ${folder}/.irbrc
 
 ${folder}/lib: ${folder}
 	@echo "Setting Source folder"
