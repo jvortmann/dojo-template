@@ -1,6 +1,6 @@
 -include ../prerequisites.mk
 
-.PHONY: all setup folder_exists source_files test_files console_config build
+.PHONY: sources tests console_config
 
 ##>> setup problem with ruby
 
@@ -10,9 +10,8 @@ version ?= 2.6.5# default version if unspecified
 
 -include ../tasks_for_language_version.mk
 
-
-source_files: ${folder}/lib
-test_files: ${folder}/spec
+sources: ${folder}/lib
+tests: ${folder}/spec
 console_config: ${folder}/.irbrc
 
 ${folder}/lib: ${folder}
