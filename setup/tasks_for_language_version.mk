@@ -1,4 +1,4 @@
-.PHONY: all setup folder_exists source_files test_files console_config build badge
+.PHONY: all setup folder_exists sources tests console_config dependencies build badge
 
 setup_base := ${CURDIR}
 FOLDER_ERROR = $(error "Folder was not specified. Use 'folder="absolute/path/to/setup" to point to an existing folder")
