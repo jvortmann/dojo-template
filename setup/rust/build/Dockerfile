@@ -1,4 +1,4 @@
-ARG VERSION=latest
+ARG VERSION
 FROM rust:${VERSION}
 
 RUN mkdir -p /dojo/problem

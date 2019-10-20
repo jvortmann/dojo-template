@@ -5,7 +5,8 @@
 .PHONY: test console
 
 LANGUAGE := rust
-DOCKER_RUN := docker run --rm -it -v ${PWD}:/dojo/problem dojo/${LANGUAGE}
+VERSION := [VERSION]
+DOCKER_RUN := docker run --rm -it -v ${PWD}:/dojo/problem dojo/${LANGUAGE}:${VERSION}
 
 ## test: run specs
 test:
