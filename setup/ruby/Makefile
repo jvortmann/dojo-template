@@ -1,15 +1,29 @@
-.PHONY: all setup build badge
+-include ../prerequisites.mk
+
+.PHONY: all setup folder_exists build
+
+##>> setup problem with ruby
 
 setup_base := ${CURDIR}
 language := ruby
 version ?= 2.6.5# default version if unspecified
 
+-include ../tasks_for_language_version.mk
+
+.DEFAULT_GOAL := all
+
 FOLDER_ERROR = $(error "Folder was not specified. Use 'folder="absolute/path/to/setup" to point to an existing folder")
 
+## all: [default] build docker image and setup problem folder
 all: build setup
 
-setup: $(if ${folder},,${FOLDER_ERROR}) ${folder}/lib/ ${folder}/spec/ ${folder}/Makefile ${folder}/.irbrc ${folder}/.ruby-version badge
+## setup: setup problem folder
+setup: folder_exists ${folder}/lib/ ${folder}/spec/ ${folder}/Makefile ${folder}/.irbrc ${folder}/.ruby-version badge
 
+folder_exists:
+	$(if ${folder},,${FOLDER_ERROR})
+
+## build: build docker image
 build:
 	@echo "Building image for '${language}:${version}' (you can specify the version using: version=${version})"
 	@docker build ${setup_base}/build/ --build-arg VERSION=${version} -t dojo/${language}:${version}
@@ -33,20 +47,3 @@ ${folder}/.irbrc: ${folder}
 ${folder}/.ruby-version: ${folder}
 	@echo "Setting ruby version file"
 	@echo ${version} > ${folder}/.ruby-version
-
-badge: ${folder}/README.md
-	@echo "Setting ${language} badge"
-	@sed -i .bkp -e "s/\\[LANGUAGE\\]/${language}/g" -e "s/\\[VERSION\\]/${version}/g" "${folder}/README.md"
-	@rm ${folder}/README.md.bkp
-
-help:
-	@echo "Help:"
-	@echo
-	@echo "Build and Setup:"
-	@echo "> make problem='Name of the Problem' version=${version}"
-	@echo
-	@echo "Build:"
-	@echo "> make build version=${version}"
-	@echo
-	@echo "Setup:"
-	@echo "> make setup problem='Name of the Problem'"
