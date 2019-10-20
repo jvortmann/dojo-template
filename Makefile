@@ -13,7 +13,7 @@ setup_base := ${CURDIR}/setup
 PROBLEM_ERROR = $(error "Problem name was not defined. Use 'url="http://some_url.com/to/a/{problem}/" or problem="Problem Name"' to define it.")
 
 ifeq (${url},)
-problem := $(shell echo ${problem} | tr '[:upper:]' '[:lower:]'| tr ' ' '_')
+problem := $(shell echo ${problem} | tr '[:upper:]' '[:lower:]' | tr ' ' '_')
 else
 override problem = $(shell echo "${url}" | sed -E "s/\/([^/]+)\/?$$/ \1/" | awk '{print $$2}')
 export problem
