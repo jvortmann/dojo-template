@@ -5,12 +5,6 @@ context_name = $(shell echo $(dir $(context_file)) | sed -E "s/^.*dojos\/(.*)\/(
 .PHONY: help description
 .DEFAULT_GOAL := help
 
-docker = docker run --rm -it -v ${PWD}:/dojo/problem dojo/$(1):$(2) $(3)
-
-## login: login to the docker image
-login:
-	@$(call run,bash)
-
 ## help: show this list
 help: description
 	@sed -nE 's/^## (.*): (.*)$$/"\1" "\2"/p' $(context_file) $(prerequisites_file) | xargs printf "\033[34m  %-20s\033[0m%s\n"
