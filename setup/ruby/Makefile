@@ -1,13 +1,12 @@
 -include ../prerequisites.mk
 
-.PHONY: sources tests console_config
-
 ##>> setup problem with ruby
-
 language := ruby
 version ?= 2.6.5# default version if unspecified
 
 -include ../tasks_for_language_version.mk
+
+.PHONY: sources tests console_config
 
 sources: ${folder}/lib
 tests: ${folder}/spec
