@@ -1,4 +1,5 @@
-FROM golang:1.11.5
+ARG VERSION
+FROM golang:${VERSION}
 
 RUN mkdir -p /dojo/problem
 
