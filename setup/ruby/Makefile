@@ -18,7 +18,7 @@ FOLDER_ERROR = $(error "Folder was not specified. Use 'folder="absolute/path/to/
 all: build setup
 
 ## setup: setup problem folder
-setup: folder_exists ${folder}/lib/ ${folder}/spec/ ${folder}/Makefile ${folder}/.irbrc ${folder}/.ruby-version badge
+setup: folder_exists ${folder}/lib/ ${folder}/spec/ ${folder}/Makefile ${folder}/.irbrc ${folder}/.${language}-version badge
 
 folder_exists:
 	$(if ${folder},,${FOLDER_ERROR})
@@ -43,7 +43,3 @@ ${folder}/Makefile: ${folder}
 ${folder}/.irbrc: ${folder}
 	@echo "Setting Console config"
 	@cp ${setup_base}/template/.irbrc ${folder}/.irbrc
-
-${folder}/.ruby-version: ${folder}
-	@echo "Setting ruby version file"
-	@echo ${version} > ${folder}/.ruby-version
