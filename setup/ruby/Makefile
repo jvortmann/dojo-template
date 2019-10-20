@@ -12,7 +12,7 @@ all: build setup
 setup: ${problem_folder} ${problem_folder}/lib/ ${problem_folder}/spec/ ${problem_folder}/Makefile ${problem_folder}/.irbrc ${problem_folder}/.ruby-version ${problem_folder}/README.md
 
 build:
-	@echo "Building image for '${language}:${version}' (use can specify the version using: version=${version})"
+	@echo "Building image for '${language}:${version}' (you can specify the version using: version=${version})"
 	@docker build ${setup_base}/build/ --build-arg VERSION=${version} -t dojo/${language}:${version}
 
 ${problem_folder}:
@@ -52,10 +52,10 @@ help:
 	@echo "Help:"
 	@echo
 	@echo "Build and Setup:"
-	@echo "> make problem='Name of the Problem' [version=2.6.0]"
+	@echo "> make problem='Name of the Problem' version=${version}"
 	@echo
 	@echo "Build:"
-	@echo "> make build [version=2.6.0]"
+	@echo "> make build version=${version}"
 	@echo
 	@echo "Setup:"
 	@echo "> make setup problem='Name of the Problem'"
