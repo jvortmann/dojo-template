@@ -20,10 +20,6 @@ ${problem_folder}:
 	@echo "Creating setup for '${language}' at '${problem_folder}'"
 	@mkdir -p ${problem_folder}
 
-${problem_folder}/Makefile: ${problem_folder}
-	@echo "Setting Makefile"
-	@sed "s/\\[VERSION\\]/${version}/g" "${setup_base}/template/Makefile" > ${problem_folder}/Makefile
-
 ${problem_folder}/dojo.py: ${problem_folder}
 	@echo "Create source file"
 	@cp ${setup_base}/template/dojo.py ${problem_folder}/
@@ -31,6 +27,10 @@ ${problem_folder}/dojo.py: ${problem_folder}
 ${problem_folder}/tests.py: ${problem_folder}
 	@echo "Create tests file"
 	@cp ${setup_base}/template/tests.py ${problem_folder}/
+
+${problem_folder}/Makefile: ${problem_folder}
+	@echo "Setting Makefile"
+	@sed "s/\\[VERSION\\]/${version}/g" "${setup_base}/template/Makefile" > ${problem_folder}/Makefile
 
 ${problem_folder}/.python-version: ${problem_folder}
 	@echo "Setting python version file"
