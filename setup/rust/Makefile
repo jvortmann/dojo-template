@@ -9,7 +9,7 @@ PROBLEM_ERROR = $(error "Problem name was not defined. Use 'problem="Problem Nam
 
 all: build setup
 
-setup: ${problem_folder} ${problem_folder}/src/ ${problem_folder}/Makefile ${problem_folder}/README.md ${problem_folder}/Cargo.toml
+setup: ${problem_folder} ${problem_folder}/src/ ${problem_folder}/Makefile ${problem_folder}/.rust-version ${problem_folder}/README.md ${problem_folder}/Cargo.toml
 
 build:
 	@echo "Building image for '${language}:${version}'"
@@ -31,6 +31,11 @@ ${problem_folder}/Cargo.toml: ${problem_folder}
 ${problem_folder}/Makefile: ${problem_folder}
 	@echo "Setting Makefile"
 	@sed "s/\\[VERSION\\]/${version}/g" "${setup_base}/template/Makefile" > ${problem_folder}/Makefile
+
+${problem_folder}/.rust-version: ${problem_folder}
+	@echo "Setting rust version file"
+	@echo ${version} > ${problem_folder}/.rust-version
+
 
 ${problem_folder}/README.md: ${problem_folder}
 	@echo "Setting Readme"
