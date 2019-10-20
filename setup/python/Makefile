@@ -22,7 +22,7 @@ ${problem_folder}:
 
 ${problem_folder}/Makefile: ${problem_folder}
 	@echo "Setting Makefile"
-	@sed "s/\\[PYTHON_VERSION\\]/${version}/g" "${setup_base}/template/Makefile" > ${problem_folder}/Makefile
+	@sed "s/\\[VERSION\\]/${version}/g" "${setup_base}/template/Makefile" > ${problem_folder}/Makefile
 
 ${problem_folder}/dojo.py: ${problem_folder}
 	@echo "Create source file"
@@ -36,7 +36,7 @@ ${problem_folder}/README.md: ${problem_folder}
 	@echo "Setting Readme"
 	@sed "s#\\[DATA\\]#$(shell date "+%Y-%m-%d %H:%M:%S")#g" "${setup_base}/template/README.md" | \
 	sed "s#\\[PROBLEM\\]#${problem}#g" | \
-	sed "s#\\[PYTHON_VERSION\\]#${version}#g" | \
+	sed "s#\\[VERSION\\]#${version}#g" | \
 	sed "s#\\[URL\\]#${url}#g" > \
 	"${problem_folder}/README.md"
 
