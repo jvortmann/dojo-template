@@ -20,7 +20,7 @@ endif
 
 canonical_problem = $(shell echo ${problem} | tr '[:upper:]' '[:lower:]'| tr ' ' '_')
 
-export folder = ${base_path}/${canonical_problem}
+export folder = ${base_path}/${canonical_problem}/${language}
 
 ## {no task}: [default] build, create and setup problem folder [> make url='http://dojopuzzles.com/problemas/exibe/{problem}/' or > make problem='Problem name']
 all: create build setup
@@ -29,7 +29,7 @@ all: create build setup
 create: ${folder}
 
 ## setup: create and setup problem folder for a particular language [> make setup url='http://dojopuzzles.com/problemas/exibe/{problem}/' or > make setup problem='Problem Name']
-setup:
+setup: create
 	@$(MAKE) setup -C setup/${language}
 
 ## build: build an language image [> make build language=ruby [version=2.6.0]]
@@ -38,7 +38,7 @@ build:
 
 ${folder}:
 	$(if ${problem},,${PROBLEM_ERROR})
-	@echo "Creating '${problem}' at '${folder}'"
+	@echo "Creating '${problem}' for ${language} at '${folder}'"
 	@mkdir -p ${folder}
 
 ## dates: list previous dojos with dates
