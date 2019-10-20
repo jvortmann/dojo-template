@@ -1,4 +1,22 @@
-.PHONY: badge
+.PHONY: all setup folder_exists source_files test_files console_config build badge
+
+FOLDER_ERROR = $(error "Folder was not specified. Use 'folder="absolute/path/to/setup" to point to an existing folder")
+
+.DEFAULT_GOAL := all
+
+## all: [default] build docker image and setup problem folder
+all: build setup
+
+## setup: setup problem folder
+setup: folder_exists source_files test_files ${folder}/Makefile console_config ${folder}/.${language}-version badge
+
+folder_exists:
+	$(if ${folder},,${FOLDER_ERROR})
+
+## build: build docker image
+build:
+	@echo "Building image for '${language}:${version}' (you can specify the version using: version=${version})"
+	@docker build ${setup_base}/build/ --build-arg VERSION=${version} -t dojo/${language}:${version}
 
 badge: ${folder}/README.md
 	@echo "Setting ${language} badge"
