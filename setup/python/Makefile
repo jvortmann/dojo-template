@@ -3,46 +3,40 @@
 setup_base := ${CURDIR}
 language := python
 version ?= 3.7.4# default version if unspecified
-problem_folder = ${folder}/${language}
 
-PROBLEM_ERROR = $(error "Problem name was not defined. Use 'problem="Problem Name"' to define it.")
+FOLDER_ERROR = $(error "Folder was not specified. Use 'folder="absolute/path/to/setup" to point to an existing folder")
 
 all: build setup
 
-setup: ${problem_folder} ${problem_folder}/dojo.py ${problem_folder}/tests.py ${problem_folder}/Makefile ${problem_folder}/.python-version ${problem_folder}/README.md
+setup: $(if ${folder},,${FOLDER_ERROR}) ${folder}/dojo.py ${folder}/tests.py ${folder}/Makefile ${folder}/.python-version ${folder}/README.md
 
 build:
 	@echo "Building image for '${language}:${version}' (you can specify the version using: version=${version})"
 	@docker build ${setup_base}/build/ --build-arg VERSION=${version} -t dojo/${language}:${version}
 
-${problem_folder}:
-	$(if ${problem},,${PROBLEM_ERROR})
-	@echo "Creating setup for '${language}' at '${problem_folder}'"
-	@mkdir -p ${problem_folder}
-
-${problem_folder}/dojo.py: ${problem_folder}
+${folder}/dojo.py: ${folder}
 	@echo "Create source file"
-	@cp ${setup_base}/template/dojo.py ${problem_folder}/
+	@cp ${setup_base}/template/dojo.py ${folder}/
 
-${problem_folder}/tests.py: ${problem_folder}
+${folder}/tests.py: ${folder}
 	@echo "Create tests file"
-	@cp ${setup_base}/template/tests.py ${problem_folder}/
+	@cp ${setup_base}/template/tests.py ${folder}/
 
-${problem_folder}/Makefile: ${problem_folder}
+${folder}/Makefile: ${folder}
 	@echo "Setting Makefile"
-	@sed "s/\\[VERSION\\]/${version}/g" "${setup_base}/template/Makefile" > ${problem_folder}/Makefile
+	@sed "s/\\[VERSION\\]/${version}/g" "${setup_base}/template/Makefile" > ${folder}/Makefile
 
-${problem_folder}/.python-version: ${problem_folder}
+${folder}/.python-version: ${folder}
 	@echo "Setting python version file"
-	@echo ${version} > ${problem_folder}/.python-version
+	@echo ${version} > ${folder}/.python-version
 
-${problem_folder}/README.md: ${problem_folder}
+${folder}/README.md: ${folder}
 	@echo "Setting Readme"
 	@sed "s#\\[DATA\\]#$(shell date "+%Y-%m-%d %H:%M:%S")#g" "${setup_base}/template/README.md" | \
 	sed "s#\\[PROBLEM\\]#${problem}#g" | \
 	sed "s#\\[VERSION\\]#${version}#g" | \
 	sed "s#\\[URL\\]#${url}#g" > \
-	"${problem_folder}/README.md"
+	"${folder}/README.md"
 
 help:
 	@echo "Help:"

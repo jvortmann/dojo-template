@@ -3,50 +3,44 @@
 setup_base := ${CURDIR}
 language := ruby
 version ?= 2.6.5# default version if unspecified
-problem_folder = ${folder}/${language}
 
-PROBLEM_ERROR = $(error "Problem name was not defined. Use 'problem="Problem Name"' to define it.")
+FOLDER_ERROR = $(error "Folder was not specified. Use 'folder="absolute/path/to/setup" to point to an existing folder")
 
 all: build setup
 
-setup: ${problem_folder} ${problem_folder}/lib/ ${problem_folder}/spec/ ${problem_folder}/Makefile ${problem_folder}/.irbrc ${problem_folder}/.ruby-version ${problem_folder}/README.md
+setup: $(if ${folder},,${FOLDER_ERROR}) ${folder}/lib/ ${folder}/spec/ ${folder}/Makefile ${folder}/.irbrc ${folder}/.ruby-version ${folder}/README.md
 
 build:
 	@echo "Building image for '${language}:${version}' (you can specify the version using: version=${version})"
 	@docker build ${setup_base}/build/ --build-arg VERSION=${version} -t dojo/${language}:${version}
 
-${problem_folder}:
-	$(if ${problem},,${PROBLEM_ERROR})
-	@echo "Creating setup for '${language}' at '${problem_folder}'"
-	@mkdir -p ${problem_folder}
-
-${problem_folder}/lib: ${problem_folder}
+${folder}/lib: ${folder}
 	@echo "Setting Source folder"
-	@cp -r ${setup_base}/template/lib ${problem_folder}/
+	@cp -r ${setup_base}/template/lib ${folder}/
 
-${problem_folder}/spec: ${problem_folder}
+${folder}/spec: ${folder}
 	@echo "Setting Test folder"
-	@cp -r ${setup_base}/template/spec ${problem_folder}/
+	@cp -r ${setup_base}/template/spec ${folder}/
 
-${problem_folder}/Makefile: ${problem_folder}
+${folder}/Makefile: ${folder}
 	@echo "Setting Makefile"
-	@sed "s/\\[VERSION\\]/${version}/g" "${setup_base}/template/Makefile" > ${problem_folder}/Makefile
+	@sed "s/\\[VERSION\\]/${version}/g" "${setup_base}/template/Makefile" > ${folder}/Makefile
 
-${problem_folder}/.irbrc: ${problem_folder}
+${folder}/.irbrc: ${folder}
 	@echo "Setting Console config"
-	@cp ${setup_base}/template/.irbrc ${problem_folder}/.irbrc
+	@cp ${setup_base}/template/.irbrc ${folder}/.irbrc
 
-${problem_folder}/.ruby-version: ${problem_folder}
+${folder}/.ruby-version: ${folder}
 	@echo "Setting ruby version file"
-	@echo ${version} > ${problem_folder}/.ruby-version
+	@echo ${version} > ${folder}/.ruby-version
 
-${problem_folder}/README.md: ${problem_folder}
+${folder}/README.md: ${folder}
 	@echo "Setting Readme"
 	@sed "s#\\[DATA\\]#$(shell date "+%Y-%m-%d %H:%M:%S")#g" "${setup_base}/template/README.md" | \
 	sed "s#\\[PROBLEM\\]#${problem}#g" | \
 	sed "s#\\[VERSION\\]#${version}#g" | \
 	sed "s#\\[URL\\]#${url}#g" > \
-	"${problem_folder}/README.md"
+	"${folder}/README.md"
 
 help:
 	@echo "Help:"
