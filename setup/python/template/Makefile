@@ -4,14 +4,12 @@
 
 .PHONY: test console
 
-LANGUAGE := python
-VERSION := [VERSION]
-DOCKER_RUN := docker run --rm -it -v ${PWD}:/dojo/problem dojo/${LANGUAGE}:${VERSION}
+run = $(call docker,python,[VERSION],$(1))
 
 ## test: run specs
 test:
-	@${DOCKER_RUN} py.test tests.py
+	@$(call run,py.test tests.py)
 
 ## console: open python console
 console:
-	@${DOCKER_RUN} python
+	@$(call run,python)

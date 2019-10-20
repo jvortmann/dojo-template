@@ -4,14 +4,12 @@
 
 .PHONY: test console
 
-LANGUAGE := rust
-VERSION := [VERSION]
-DOCKER_RUN := docker run --rm -it -v ${PWD}:/dojo/problem dojo/${LANGUAGE}:${VERSION}
+run = $(call docker,rust,[VERSION],$(1))
 
 ## test: run specs
 test:
-	@${DOCKER_RUN} cargo test
+	@$(call run,cargo test)
 
 ## login: login to the docker image
 login:
-	@${DOCKER_RUN} bash
+	@$(call run,bash)
