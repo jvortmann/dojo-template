@@ -1,6 +1,6 @@
 # DOJO [DATA]
 
-[![Python Version](https://img.shields.io/badge/ruby-[PYTHON_VERSION]-green.svg)](https://img.shields.io/badge/python-[PYTHON_VERSION]-green.svg)
+[![Python Version](https://img.shields.io/badge/ruby-[VERSION]-green.svg)](https://img.shields.io/badge/python-[VERSION]-green.svg)
 
 ## Howto
 
