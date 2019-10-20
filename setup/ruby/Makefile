@@ -11,6 +11,7 @@ version ?= 2.6.5# default version if unspecified
 sources: ${folder}/lib
 tests: ${folder}/spec
 console_config: ${folder}/.irbrc
+dependencies: ;#done inside image
 
 ${folder}/lib: ${folder}
 	@echo "Setting Source folder"
