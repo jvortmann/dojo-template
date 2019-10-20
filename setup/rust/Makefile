@@ -6,8 +6,6 @@ version = 1.38.0# default version if unspecified
 
 -include ../tasks_for_language_version.mk
 
-.PHONY: all setup build badge
-
 sources: ${folder}/src
 tests: ;
 console_config: ;
