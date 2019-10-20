@@ -28,6 +28,10 @@ ${problem_folder}/spec: ${problem_folder}
 	@echo "Setting Test folder"
 	@cp -r ${setup_base}/template/spec ${problem_folder}/
 
+${problem_folder}/Makefile: ${problem_folder}
+	@echo "Setting Makefile"
+	@sed "s/\\[VERSION\\]/${version}/g" "${setup_base}/template/Makefile" > ${problem_folder}/Makefile
+
 ${problem_folder}/.irbrc: ${problem_folder}
 	@echo "Setting Console config"
 	@cp ${setup_base}/template/.irbrc ${problem_folder}/.irbrc
@@ -35,10 +39,6 @@ ${problem_folder}/.irbrc: ${problem_folder}
 ${problem_folder}/.ruby-version: ${problem_folder}
 	@echo "Setting ruby version file"
 	@echo ${version} > ${problem_folder}/.ruby-version
-
-${problem_folder}/Makefile: ${problem_folder}
-	@echo "Setting Makefile"
-	@sed "s/\\[VERSION\\]/${version}/g" "${setup_base}/template/Makefile" > ${problem_folder}/Makefile
 
 ${problem_folder}/README.md: ${problem_folder}
 	@echo "Setting Readme"
