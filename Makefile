@@ -4,6 +4,7 @@ context_name = "dojo"
 
 language ?= python# default language to python
 base_path ?= ${CURDIR}/dojos
+setup_base := ${CURDIR}/setup
 
 .DEFAULT_GOAL := all
 
@@ -26,7 +27,7 @@ export folder = ${base_path}/${canonical_problem}/${language}
 all: create build setup
 
 ## create: only create problem folder [> make create url='http://dojopuzzles.com/problemas/exibe/{problem}/' or > make create problem='Problem name']
-create: ${folder}
+create: ${folder} ${folder}/README.md
 
 ## setup: create and setup problem folder for a particular language [> make setup url='http://dojopuzzles.com/problemas/exibe/{problem}/' or > make setup problem='Problem Name']
 setup: create
@@ -40,6 +41,13 @@ ${folder}:
 	$(if ${problem},,${PROBLEM_ERROR})
 	@echo "Creating '${problem}' for ${language} at '${folder}'"
 	@mkdir -p ${folder}
+
+${folder}/README.md: ${folder}
+	@echo "Setting Readme"
+	@sed "s#\\[DATA\\]#$(shell date "+%Y-%m-%d %H:%M:%S")#g" "${setup_base}/README.md" | \
+	sed "s#\\[PROBLEM\\]#${problem}#g" | \
+	sed "s#\\[URL\\]#${url}#g" > \
+	"${folder}/README.md"
 
 ## dates: list previous dojos with dates
 dates:
