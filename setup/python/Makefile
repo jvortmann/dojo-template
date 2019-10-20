@@ -2,7 +2,7 @@
 
 setup_base := ${CURDIR}
 language := python
-version ?= 3.7.4 # default version if unspecified
+version ?= 3.7.4# default version if unspecified
 problem_folder = ${folder}/${language}
 
 PROBLEM_ERROR = $(error "Problem name was not defined. Use 'problem="Problem Name"' to define it.")
