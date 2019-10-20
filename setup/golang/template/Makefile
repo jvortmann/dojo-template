@@ -1,5 +1,5 @@
--include ../../../setup/prerequisites.mk
 -include ../../../setup/run_tasks.mk
+-include ../../../setup/prerequisites.mk
 
 ##>> tasks
 
