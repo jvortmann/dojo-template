@@ -4,7 +4,6 @@
 
 ##>> setup problem with ruby
 
-setup_base := ${CURDIR}
 language := ruby
 version ?= 2.6.5# default version if unspecified
 
