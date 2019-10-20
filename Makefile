@@ -2,7 +2,7 @@
 context_file = $(word 1,$(abspath $(MAKEFILE_LIST)))
 context_name = "dojo"
 
-language ?= python #default language to python
+language ?= python# default language to python
 base_path ?= ${CURDIR}/dojos
 
 .DEFAULT_GOAL := all
