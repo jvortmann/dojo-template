@@ -34,14 +34,6 @@ ${folder}/.ruby-version: ${folder}
 	@echo "Setting ruby version file"
 	@echo ${version} > ${folder}/.ruby-version
 
-${folder}/README.md: ${folder}
-	@echo "Setting Readme"
-	@sed "s#\\[DATA\\]#$(shell date "+%Y-%m-%d %H:%M:%S")#g" "${setup_base}/template/README.md" | \
-	sed "s#\\[PROBLEM\\]#${problem}#g" | \
-	sed "s#\\[VERSION\\]#${version}#g" | \
-	sed "s#\\[URL\\]#${url}#g" > \
-	"${folder}/README.md"
-
 help:
 	@echo "Help:"
 	@echo
