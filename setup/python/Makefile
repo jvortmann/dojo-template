@@ -2,18 +2,18 @@
 
 setup_base := ${CURDIR}
 language := python
-version ?= $(shell cat ${setup_base}/template/.python-version)
+version ?= 3.7.4 # default version if unspecified
 problem_folder = ${folder}/${language}
 
 PROBLEM_ERROR = $(error "Problem name was not defined. Use 'problem="Problem Name"' to define it.")
 
 all: build setup
 
-setup: ${problem_folder} ${problem_folder}/dojo.py ${problem_folder}/tests.py ${problem_folder}/Makefile ${problem_folder}/README.md
+setup: ${problem_folder} ${problem_folder}/dojo.py ${problem_folder}/tests.py ${problem_folder}/Makefile ${problem_folder}/.python-version ${problem_folder}/README.md
 
 build:
-	@echo "Building image for '${language}' (use can specify the version using: version=3.7.2)"
-	@docker build --no-cache ${setup_base}/build/ -t dojo/${language}:${version}
+	@echo "Building image for '${language}:${version}' (you can specify the version using: version=${version})"
+	@docker build ${setup_base}/build/ --build-arg VERSION=${version} -t dojo/${language}:${version}
 
 ${problem_folder}:
 	$(if ${problem},,${PROBLEM_ERROR})
@@ -26,11 +26,15 @@ ${problem_folder}/Makefile: ${problem_folder}
 
 ${problem_folder}/dojo.py: ${problem_folder}
 	@echo "Create source file"
-	@cp -r ${setup_base}/template/dojo.py ${problem_folder}/
+	@cp ${setup_base}/template/dojo.py ${problem_folder}/
 
 ${problem_folder}/tests.py: ${problem_folder}
 	@echo "Create tests file"
-	@cp -r ${setup_base}/template/tests.py ${problem_folder}/
+	@cp ${setup_base}/template/tests.py ${problem_folder}/
+
+${problem_folder}/.python-version: ${problem_folder}
+	@echo "Setting python version file"
+	@echo ${version} > ${problem_folder}/.python-version
 
 ${problem_folder}/README.md: ${problem_folder}
 	@echo "Setting Readme"
@@ -44,10 +48,10 @@ help:
 	@echo "Help:"
 	@echo
 	@echo "Build and Setup:"
-	@echo "> make problem='Name of the Problem' [version=3.7.2]"
+	@echo "> make problem='Name of the Problem' version=${version}"
 	@echo
 	@echo "Build:"
-	@echo "> make build [version=3.7.2]"
+	@echo "> make build version=${version}"
 	@echo
 	@echo "Setup:"
 	@echo "> make setup problem='Name of the Problem'"

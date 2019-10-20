@@ -2,15 +2,14 @@
 context_file = $(word 1,$(abspath $(MAKEFILE_LIST)))
 context_name = "dojo"
 
+language ?= python #default language to python
+base_path ?= ${CURDIR}/dojos
+
 .DEFAULT_GOAL := all
 
-.PHONY: all create setup/${language} build dates help description how_to
+.PHONY: all create setup build dates help description how_to
 
-LANGUAGE_ERROR = $(error "Language was not defined. Use 'language=ruby' to define it.")
 PROBLEM_ERROR = $(error "Problem name was not defined. Use 'url="http://some_url.com/to/a/{problem}/" or problem="Problem Name"' to define it.")
-
-base_path ?= ${CURDIR}/dojos
-language ?= python #default language to python
 
 ifeq (${url},)
 problem := $(shell echo ${problem} | tr '[:upper:]' '[:lower:]'| tr ' ' '_')
@@ -30,17 +29,17 @@ all: create build setup/${language}
 create: ${folder}
 
 ## setup: create and setup problem folder for a particular language [> make setup url='http://dojopuzzles.com/problemas/exibe/{problem}/' or > make setup problem='Problem Name']
-setup: setup/${language}
-
-setup/${language}: ${folder}
-	$(if ${language},,${LANGUAGE_ERROR})
-	$(if ${problem},,${PROBLEM_ERROR})
+setup:
 	@$(MAKE) setup -C setup/${language}
 
 ## build: build an language image [> make build language=ruby [version=2.6.0]]
-build: setup/${language}/build
-	$(if ${language},,${LANGUAGE_ERROR})
+build:
 	@$(MAKE) build -C setup/${language}
+
+${folder}:
+	$(if ${problem},,${PROBLEM_ERROR})
+	@echo "Creating '${problem}' at '${folder}'"
+	@mkdir -p ${folder}
 
 ## dates: list previous dojos with dates
 dates:
@@ -50,11 +49,6 @@ dates:
 histogram:
 	@echo Dojos per month:
 	@$(MAKE) dates | cut -d'-' -f1,2 | uniq -c | while read -r amount date; do echo "$$date $$amount `jot -b '#' - 1 $$amount | xargs | tr -d ' '`"; done | tr -dc '[[:print:]]\n' | cut -c5- | xargs printf "\033[34m %-8s \033[37m%-2d \033[32m%s\033[0m\n"
-
-${folder}:
-	$(if ${problem},,${PROBLEM_ERROR})
-	@echo "Creating '${problem}' at '${folder}'"
-	@mkdir -p ${folder}
 
 ## help: show this message
 help: description tasks_with_examples tasks_without_examples

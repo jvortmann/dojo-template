@@ -1,4 +1,4 @@
-ARG VERSION=3.7.2
+ARG VERSION
 FROM python:${VERSION}
 
 RUN mkdir -p /dojo/problem
