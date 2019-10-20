@@ -17,7 +17,3 @@ watch:
 ## console: open irb
 console:
 	@$(call run,irb)
-
-## login: login to the docker image
-login:
-	@$(call run,bash)
