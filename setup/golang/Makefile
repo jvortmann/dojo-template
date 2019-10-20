@@ -8,7 +8,7 @@ FOLDER_ERROR = $(error "Folder was not specified. Use 'folder="absolute/path/to/
 
 all: build setup
 
-setup: $(if ${folder},,${FOLDER_ERROR}) ${folder}/main.go ${folder}/main_test.go ${folder}/Makefile
+setup: $(if ${folder},,${FOLDER_ERROR}) ${folder}/main.go ${folder}/main_test.go ${folder}/Makefile ${folder}/.${language}-version
 
 build:
 	@echo "Building image for '${language}:${version}' (you can specify the version using: version=${version})"
@@ -25,6 +25,10 @@ ${folder}/main_test.go: ${folder}
 ${folder}/Makefile: ${folder}
 	@echo "Creating Makefile"
 	@sed "s/\\[VERSION\\]/${version}/g" "${setup_base}/template/Makefile" > ${folder}/Makefile
+
+${folder}/.${language}-version: ${folder}
+	@echo "Setting ${language} version file"
+	@echo ${version} > ${folder}/.${language}-version
 
 help:
 	@echo "Help:"
