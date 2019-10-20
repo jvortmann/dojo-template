@@ -23,7 +23,7 @@ canonical_problem = $(shell echo ${problem} | tr '[:upper:]' '[:lower:]'| tr ' '
 export folder = ${base_path}/${canonical_problem}
 
 ## {no task}: [default] build, create and setup problem folder [> make url='http://dojopuzzles.com/problemas/exibe/{problem}/' or > make problem='Problem name']
-all: create build setup/${language}
+all: create build setup
 
 ## create: only create problem folder [> make create url='http://dojopuzzles.com/problemas/exibe/{problem}/' or > make create problem='Problem name']
 create: ${folder}
