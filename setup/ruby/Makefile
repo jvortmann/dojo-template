@@ -1,4 +1,4 @@
-.PHONY: all setup build help
+.PHONY: all setup build badge
 
 setup_base := ${CURDIR}
 language := ruby
@@ -8,7 +8,7 @@ FOLDER_ERROR = $(error "Folder was not specified. Use 'folder="absolute/path/to/
 
 all: build setup
 
-setup: $(if ${folder},,${FOLDER_ERROR}) ${folder}/lib/ ${folder}/spec/ ${folder}/Makefile ${folder}/.irbrc ${folder}/.ruby-version ${folder}/README.md
+setup: $(if ${folder},,${FOLDER_ERROR}) ${folder}/lib/ ${folder}/spec/ ${folder}/Makefile ${folder}/.irbrc ${folder}/.ruby-version badge
 
 build:
 	@echo "Building image for '${language}:${version}' (you can specify the version using: version=${version})"
@@ -33,6 +33,10 @@ ${folder}/.irbrc: ${folder}
 ${folder}/.ruby-version: ${folder}
 	@echo "Setting ruby version file"
 	@echo ${version} > ${folder}/.ruby-version
+
+badge: ${folder}/README.md
+	@echo "Setting ${language} badge"
+	@sed -i bkp -e "s/\\[LANGUAGE\\]/${language}/g" -e "s/\\[VERSION\\]/${version}/g" "${folder}/README.md"
 
 help:
 	@echo "Help:"

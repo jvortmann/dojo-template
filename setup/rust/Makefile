@@ -1,4 +1,4 @@
-.PHONY: all setup build help
+.PHONY: all setup build badge
 
 setup_base := ${CURDIR}
 language := rust
@@ -8,7 +8,7 @@ FOLDER_ERROR = $(error "Folder was not specified. Use 'folder="absolute/path/to/
 
 all: build setup
 
-setup: $(if ${folder},,${FOLDER_ERROR}) ${folder}/src/ ${folder}/Makefile ${folder}/.rust-version ${folder}/Cargo.toml ${folder}/README.md 
+setup: $(if ${folder},,${FOLDER_ERROR}) ${folder}/src/ ${folder}/Makefile ${folder}/.rust-version ${folder}/Cargo.toml badge
 
 build:
 	@echo "Building image for '${language}:${version}'"
@@ -29,6 +29,10 @@ ${folder}/.rust-version: ${folder}
 ${folder}/Cargo.toml: ${folder}
 	@echo "Setting Manifest file"
 	@cp ${setup_base}/template/Cargo.toml ${folder}/
+
+badge: ${folder}/README.md
+	@echo "Setting ${language} badge"
+	@sed -i bkp -e "s/\\[LANGUAGE\\]/${language}/g" -e "s/\\[VERSION\\]/${version}/g" "${folder}/README.md"
 
 help:
 	@echo "Help:"
