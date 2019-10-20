@@ -36,10 +36,6 @@ ${folder}/spec: ${folder}
 	@echo "Setting Test folder"
 	@cp -r ${setup_base}/template/spec ${folder}/
 
-${folder}/Makefile: ${folder}
-	@echo "Setting Makefile"
-	@sed "s/\\[VERSION\\]/${version}/g" "${setup_base}/template/Makefile" > ${folder}/Makefile
-
 ${folder}/.irbrc: ${folder}
 	@echo "Setting Console config"
 	@cp ${setup_base}/template/.irbrc ${folder}/.irbrc
