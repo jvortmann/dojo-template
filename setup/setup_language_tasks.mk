@@ -1,6 +1,9 @@
-.PHONY: all setup folder_exists sources tests console_config dependencies build badge
+.PHONY: all setup folder_exists sources tests console_config dependencies build build_image badge
 
 setup_base := ${CURDIR}
+image_tag := dojo/${language}:${version}
+image_id := $(shell docker images -q $(image_tag))
+
 FOLDER_ERROR = $(error "Folder was not specified. Use 'folder="absolute/path/to/setup" to point to an existing folder")
 
 .DEFAULT_GOAL := all
@@ -15,9 +18,11 @@ folder_exists:
 	$(if ${folder},,${FOLDER_ERROR})
 
 ## build: build docker image
-build:
-	@echo "Building image for '${language}:${version}' (you can specify the version using: version=${version})"
-	@docker build ${setup_base}/build/ --build-arg VERSION=${version} -t dojo/${language}:${version}
+build: $(if $(strip $(image_id)),,build_image)
+
+build_image:
+	@echo "Building image for '${image_tag}' (you can specify the version using: version=${version})"
+	@docker build ${setup_base}/build/ --build-arg VERSION=${version} -t ${image_tag}
 
 badge: ${folder}/README.md
 	@echo "Setting ${language} badge"
