@@ -9,7 +9,7 @@ FOLDER_ERROR = $(error "Folder was not specified. Use 'folder="absolute/path/to/
 all: build setup
 
 ## setup: setup problem folder
-setup: folder_exists sources tests dependencies console_config ${folder}/Makefile ${folder}/.${language}-version badge
+setup: folder_exists sources tests dependencies console_config ${folder}/Makefile ${folder}/.${language}-version ${folder}/.tool-versions badge
 
 folder_exists:
 	$(if ${folder},,${FOLDER_ERROR})
@@ -27,6 +27,10 @@ badge: ${folder}/README.md
 ${folder}/.${language}-version: ${folder}
 	@echo "Setting ${language} version file"
 	@echo ${version} > ${folder}/.${language}-version
+
+${folder}/.tool-versions: ${folder}
+	@echo "Setting ${language} in tools version file"
+	@echo "${language} ${version}" > ${folder}/.tool-versions
 
 ${folder}/Makefile: ${folder}
 	@echo "Setting Makefile"
