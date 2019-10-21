@@ -1,0 +1,26 @@
+-include ../prerequisites.mk
+
+##>> setup problem with elixir
+language := elixir
+version ?= 1.9.2# default version if unspecified
+
+-include ../setup_language_tasks.mk
+
+.PHONY: setup_erlang
+
+sources: ${folder}/lib
+tests: ${folder}/test
+console_config: ;
+dependencies: ${folder}/mix.exs
+
+${folder}/lib: ${folder}
+	@echo "Setting Source folder"
+	@cp -r ${setup_base}/template/lib ${folder}/
+
+${folder}/test: ${folder}
+	@echo "Setting Test folder"
+	@cp -r ${setup_base}/template/test ${folder}/
+
+${folder}/mix.exs: ${folder}
+	@echo "Setting depedencies"
+	@cp ${setup_base}/template/mix.exs ${folder}/
