@@ -4,7 +4,7 @@
 language := ruby
 version ?= 2.6.5# default version if unspecified
 
--include ../tasks_for_language_version.mk
+-include ../setup_language_tasks.mk
 
 sources: ${folder}/lib
 tests: ${folder}/spec

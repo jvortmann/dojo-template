@@ -4,7 +4,7 @@
 language := python
 version ?= 3.7.4# default version if unspecified
 
--include ../tasks_for_language_version.mk
+-include ../setup_language_tasks.mk
 
 sources: ${folder}/dojo.py
 tests: ${folder}/tests.py

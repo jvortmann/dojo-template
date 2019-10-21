@@ -4,7 +4,7 @@
 language := golang
 version ?= 1.13.3# default version if unspecified
 
--include ../tasks_for_language_version.mk
+-include ../setup_language_tasks.mk
 
 sources: ${folder}/main.go
 tests: ${folder}/main_test.go;
