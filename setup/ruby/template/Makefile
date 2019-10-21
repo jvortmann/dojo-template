@@ -3,7 +3,7 @@
 
 ##>> tasks
 
-.PHONY: test watch console login
+.PHONY: test watch console
 
 run = $(call docker,ruby,[VERSION],$(1))
 
