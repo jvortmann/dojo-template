@@ -4,7 +4,7 @@
 language := rust
 version = 1.38.0# default version if unspecified
 
--include ../tasks_for_language_version.mk
+-include ../setup_language_tasks.mk
 
 sources: ${folder}/src
 tests: ;
