@@ -3,7 +3,7 @@
 
 ##>> tasks
 
-.PHONY: test console
+.PHONY: test
 
 run = $(call docker,rust,[VERSION],$(1))
 
