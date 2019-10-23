@@ -6,9 +6,10 @@ language ?= python# default language to python
 base_path ?= ${CURDIR}/dojos
 setup_base := ${CURDIR}/setup
 
+
 .DEFAULT_GOAL := all
 
-.PHONY: all create setup build dates help description how_to
+.PHONY: all create setup build dojos dojos_dates dates date_range start_date help description how_to
 
 PROBLEM_ERROR = $(error "Problem name was not defined. Use 'url="http://some_url.com/to/a/{problem}/" or problem="Problem Name"' to define it.")
 
@@ -51,12 +52,25 @@ ${folder}/README.md: ${folder}
 
 ## dates: list previous dojos with dates
 dates:
-	@grep "# DOJO" -R ${base_path} | sed "s/.*dojos\/\(.*\)\/\(.*\)\/README.md:# DOJO \(.*\)$$/\3 \1 \2/" | xargs -L1 printf "\033[34m%-11s\033[0m%s \033[37m%-25s\033[33m%-8s\033[0m\n" | sort
+	@$(MAKE) dojos | xargs -L1 printf "\033[34m%-11s\033[0m%s \033[37m%-25s\033[33m%-8s\033[0m\n" | sort
 
 ## histogram: show histogram of dojos per month
+histogram: SHELL := /bin/bash
 histogram:
 	@echo Dojos per month:
-	@$(MAKE) dates | cut -d'-' -f1,2 | uniq -c | while read -r amount date; do echo "$$date $$amount `jot -b '#' - 1 $$amount | xargs | tr -d ' '`"; done | tr -dc '[[:print:]]\n' | cut -c5- | xargs printf "\033[34m %-8s \033[37m%-2d \033[32m%s\033[0m\n"
+	@cat <($(MAKE) dojos_dates | cut -f1,2 -d'-') <($(MAKE) date_range) | sort | uniq -c | while read -r amount date; do echo "$$date $$(($$amount - 1)) |`jot -b '#' - 0 $$(($$amount - 1)) | xargs | tr -d ' ' | cut -c2-`"; done | xargs printf "\033[34m%-8s\033[37m%-2d\033[32m%s\033[0m\n"
+
+dojos:
+	@grep "# DOJO" -R ${base_path} | sed "s/.*dojos\/\(.*\)\/\(.*\)\/README.md:# DOJO \(.*\)$$/\3 \1 \2/"
+
+dojos_dates:
+	@$(MAKE) dojos | cut -f1 -d' ' | sort
+
+date_range:
+	@dateseq `$(MAKE) start_date` 1mo `date +%Y-%m` -f %Y-%m
+
+start_date:
+	@$(MAKE) dates | cut -f1,2 -d'-' | head -n1 | sed -E "s/[[:cntrl:]]\[[0-9]*m//g"
 
 ## help: show this message
 help: description tasks_with_examples tasks_without_examples
