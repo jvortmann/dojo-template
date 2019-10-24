@@ -6,11 +6,12 @@ language ?= python# default language to python
 base_path ?= ${CURDIR}/dojos
 setup_base := ${CURDIR}/setup
 
-
 .DEFAULT_GOAL := all
 
-.PHONY: all create setup build dojos dojos_dates dates date_range start_date help description how_to
+.PHONY: all create setup build dojos dojos_dates dateutils dates date_range start_date help description how_to
 
+dateseq_found := $(shell command -v dateseq)
+DATESEQ_ERROR = $(error "To create date ranges it is necessary to install 'dateseq'. Run 'brew install dateutils' or 'apt-get install dateutils'")
 PROBLEM_ERROR = $(error "Problem name was not defined. Use 'url="http://some_url.com/to/a/{problem}/" or problem="Problem Name"' to define it.")
 
 ifeq (${url},)
@@ -66,8 +67,10 @@ dojos:
 dojos_dates:
 	@$(MAKE) dojos | cut -f1 -d' ' | sort
 
-date_range:
+date_range: dateutils
 	@dateseq `$(MAKE) start_date` 1mo `date +%Y-%m` -f %Y-%m
+
+dateutils: $(if ${dateseq_found},,${DATESEQ_ERROR})
 
 start_date:
 	@$(MAKE) dates | cut -f1,2 -d'-' | head -n1 | sed -E "s/[[:cntrl:]]\[[0-9]*m//g"
