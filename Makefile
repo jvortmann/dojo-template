@@ -10,8 +10,6 @@ setup_base := ${CURDIR}/setup
 
 .PHONY: all create setup build dojos dojos_dates dateutils dates date_range start_date help description how_to
 
-dateseq_found := $(shell command -v dateseq)
-DATESEQ_ERROR = $(error "To create date ranges it is necessary to install 'dateseq'. Run 'brew install dateutils' or 'apt-get install dateutils'")
 PROBLEM_ERROR = $(error "Problem name was not defined. Use 'url="http://some_url.com/to/a/{problem}/" or problem="Problem Name"' to define it.")
 
 ifeq (${url},)
@@ -70,7 +68,12 @@ dojos_dates:
 date_range: dateutils
 	@dateseq `$(MAKE) start_date` 1mo `date +%Y-%m` -f %Y-%m
 
-dateutils: $(if ${dateseq_found},,${DATESEQ_ERROR})
+dateutils:
+ifeq ($(shell uname -s),Darwin)
+	@command -v dateseq 1> /dev/null || (echo "Installing dateutils for MacOS" && brew install dateutils)
+else
+	@command -v dateseq 1> /dev/null || (echo "Installing dateutils for Linux"; apt-get install dateutils)
+endif
 
 start_date:
 	@$(MAKE) dates | cut -f1,2 -d'-' | head -n1 | sed -E "s/[[:cntrl:]]\[[0-9]*m//g"
