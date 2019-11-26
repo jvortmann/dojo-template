@@ -13,7 +13,7 @@ test:
 
 ## watch: run specs when files change
 watch:
-	@$(call run,bundle exec guard --guardfile ../Guardfile)
+	@$(call run,bundle exec guard --guardfile ../Guardfile --force-polling)
 
 ## console: open irb
 console:
