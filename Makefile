@@ -55,7 +55,7 @@ dates:
 
 ## histogram: show histogram of dojos per month
 histogram: SHELL := /bin/bash
-histogram:
+histogram: dateutils
 	@echo Dojos per month:
 	@cat <($(MAKE) dojos_dates | cut -f1,2 -d'-') <($(MAKE) date_range) | sort | uniq -c | while read -r amount date; do echo "$$date $$(($$amount - 1)) |`jot -b '*' - 0 $$(($$amount - 1)) | xargs | tr -d ' ' | cut -c2-`"; done | xargs printf "\033[34m%-8s\033[37m%-2d\033[32m%s\033[0m\n"
 
