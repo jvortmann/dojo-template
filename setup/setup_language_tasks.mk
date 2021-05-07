@@ -39,4 +39,4 @@ ${folder}/.tool-versions: ${folder}
 
 ${folder}/Makefile: ${folder}
 	@echo "Setting Makefile"
-	@sed "s/\\[VERSION\\]/${version}/g" "${setup_base}/template/Makefile" > ${folder}/Makefile
+	@sed -e "s/\\[VERSION\\]/${version}/g" -e "s#\\[SETUP_BASE\\]#${setup_base}#g" "${setup_base}/template/Makefile" > ${folder}/Makefile
