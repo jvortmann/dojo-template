@@ -12,7 +12,7 @@ FOLDER_ERROR = $(error "Folder was not specified. Use 'folder="absolute/path/to/
 all: build setup
 
 ## setup: setup problem folder
-setup: folder_exists sources tests console_config ${folder}/Makefile ${folder}/.${language}-version ${folder}/.tool-versions badge dependencies 
+setup: folder_exists sources tests console_config ${folder}/Makefile ${folder}/.${language}-version ${folder}/.tool-versions badge dependencies
 
 folder_exists:
 	$(if ${folder},,${FOLDER_ERROR})
