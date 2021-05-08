@@ -39,7 +39,7 @@ ${folder}/.tool-versions: ${folder}
 
 ${folder}/Makefile: ${folder}
 	@echo "Setting Makefile"
-	@sed -e "s#\\[SETUP_BASE\\]#${setup_base}#g" \
+	@sed -e "s#\\[SETUP_BASE\\]#$(realpath ${setup_base}/../)#g" \
 		-e "s#\\[IMAGE_TAG\\]#${image_tag}#g" \
 		-e "s/\\[LANGUAGE\\]/${language}/g" \
 		-e "s/\\[VERSION\\]/${version}/g" \

@@ -1,5 +1,5 @@
--include [SETUP_BASE]/../run_tasks.mk
--include [SETUP_BASE]/../prerequisites.mk
+-include [SETUP_BASE]/run_tasks.mk
+-include [SETUP_BASE]/prerequisites.mk
 
 setup_base := [SETUP_BASE]
 image_tag := [IMAGE_TAG]
