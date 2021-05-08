@@ -15,3 +15,10 @@ build_image:
 	@echo "Building image for '${image_tag}'"
 	@docker build ${setup_base}/build --build-arg VERSION=[VERSION] -t ${image_tag}
 
+setup_link:
+	@echo
+	@echo "The default location for dojos' folder is not being used or the setup_link was removed."
+	@echo "A symlink called 'setup_link' pointing to the dojos setup folder is necessary."
+	@echo "Run the following to create it:"
+	@echo "ln -s {relative_path/to/dojo-template/setup} setup_link"
+

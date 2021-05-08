@@ -3,9 +3,9 @@
 .PHONY: test console
 
 ## test: run specs
-test: build
+test: setup_link build
 	@$(call run,py.test tests.py)
 
 ## console: open python console
-console: build
+console: setup_link build
 	@$(call run,python)
