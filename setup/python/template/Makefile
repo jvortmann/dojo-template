@@ -1,16 +1,11 @@
--include ../../../setup/run_tasks.mk
--include ../../../setup/prerequisites.mk
-
 ##>> tasks
 
 .PHONY: test console
 
-run = $(call docker,python,[VERSION],$(1))
-
 ## test: run specs
-test:
+test: build
 	@$(call run,py.test tests.py)
 
 ## console: open python console
-console:
+console: build
 	@$(call run,python)

@@ -1,11 +1,6 @@
--include ../../../setup/run_tasks.mk
--include ../../../setup/prerequisites.mk
-
 ##>> tasks
 
 .PHONY: test
 
-run = $(call docker,golang,[VERSION],$(1))
-
-test:
+test: build
 	@$(call run,richgo test -v ./...)

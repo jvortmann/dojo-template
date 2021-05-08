@@ -1,16 +1,11 @@
--include ../../../setup/run_tasks.mk
--include ../../../setup/prerequisites.mk
-
 ##>> tasks
 
 .PHONY: test console
 
-run = $(call docker,elixir,[VERSION],$(1))
-
 ## test: run specs
-test:
+test: build
 	@$(call run,mix test)
 
 ## console: open iex
-console:
+console: build
 	@$(call run,iex)
