@@ -2,5 +2,5 @@
 
 .PHONY: test
 
-test: setup_link build
+test: run_dependencies
 	@$(call run,richgo test -v ./...)

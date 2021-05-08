@@ -3,9 +3,9 @@
 .PHONY: test console
 
 ## test: run specs
-test: setup_link build
+test: run_dependencies
 	@$(call run,mix test)
 
 ## console: open iex
-console: setup_link build
+console: run_dependencies
 	@$(call run,iex)
