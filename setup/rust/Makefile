@@ -9,7 +9,7 @@ version = 1.38.0# default version if unspecified
 sources: ${folder}/src
 tests: ;
 console_config: ;
-dependencies: ${folder}/Cargo.toml
+dependencies: ${folder}/Cargo.toml ${folder}/.gitignore
 
 ${folder}/src: ${folder}
 	@echo "Setting Source folder"
@@ -18,3 +18,7 @@ ${folder}/src: ${folder}
 ${folder}/Cargo.toml: ${folder}
 	@echo "Setting Manifest file"
 	@cp ${setup_base}/template/Cargo.toml ${folder}/
+
+${folder}/.gitignore: ${folder}
+	@echo "Setting .gitignore file"
+	@cp ${setup_base}/template/.gitignore ${folder}/
