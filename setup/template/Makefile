@@ -1,7 +1,7 @@
--include [SETUP_BASE]/run_tasks.mk
--include [SETUP_BASE]/prerequisites.mk
+-include setup_link/run_tasks.mk
+-include setup_link/prerequisites.mk
 
-setup_base := [SETUP_BASE]
+setup_base := setup_link
 image_tag := [IMAGE_TAG]
 image_id := $(shell docker images -q $(image_tag))
 run = $(call docker,[LANGUAGE],[VERSION],$(1))
