@@ -6,7 +6,7 @@ image_tag := [IMAGE_TAG]
 image_id := $(shell docker images -q $(image_tag))
 run = $(call docker,[LANGUAGE],[VERSION],$(1))
 
-.PHONY: build build_image
+.PHONY: run_dependencies build build_image
 
 ## build: build docker image
 build: $(if $(strip $(image_id)),,build_image)
@@ -21,4 +21,6 @@ setup_link:
 	@echo "A symlink called 'setup_link' pointing to the dojos setup folder is necessary."
 	@echo "Run the following to create it:"
 	@echo "ln -s {relative_path/to/dojo-template/setup} setup_link"
+
+run_dependencies: setup_link build
 
