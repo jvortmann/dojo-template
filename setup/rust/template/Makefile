@@ -3,5 +3,5 @@
 .PHONY: test
 
 ## test: run specs
-test: build
+test: setup_link build
 	@$(call run,cargo test)

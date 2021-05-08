@@ -46,4 +46,4 @@ ${folder}/Makefile: ${folder}
 	@cat "${setup_base}/template/Makefile" >> ${folder}/Makefile
 
 ${folder}/setup_link: ${folder}
-	@ln -s $(realpath ${setup_base}/../) ${folder}/setup_link
+	@ln -s ../../../setup ${folder}/setup_link
