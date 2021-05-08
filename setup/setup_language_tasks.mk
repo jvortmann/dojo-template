@@ -12,7 +12,7 @@ FOLDER_ERROR = $(error "Folder was not specified. Use 'folder="absolute/path/to/
 all: build setup
 
 ## setup: setup problem folder
-setup: folder_exists sources tests console_config ${folder}/Makefile ${folder}/.${language}-version ${folder}/.tool-versions badge dependencies
+setup: folder_exists sources tests console_config ${folder}/Makefile ${folder}/setup_link ${folder}/.${language}-version ${folder}/.tool-versions badge dependencies
 
 folder_exists:
 	$(if ${folder},,${FOLDER_ERROR})
@@ -39,9 +39,11 @@ ${folder}/.tool-versions: ${folder}
 
 ${folder}/Makefile: ${folder}
 	@echo "Setting Makefile"
-	@sed -e "s#\\[SETUP_BASE\\]#$(realpath ${setup_base}/../)#g" \
-		-e "s#\\[IMAGE_TAG\\]#${image_tag}#g" \
+	@sed -e "s#\\[IMAGE_TAG\\]#${image_tag}#g" \
 		-e "s/\\[LANGUAGE\\]/${language}/g" \
 		-e "s/\\[VERSION\\]/${version}/g" \
 		"${setup_base}/../template/Makefile" > ${folder}/Makefile
 	@cat "${setup_base}/template/Makefile" >> ${folder}/Makefile
+
+${folder}/setup_link: ${folder}
+	@ln -s $(realpath ${setup_base}/../) ${folder}/setup_link
