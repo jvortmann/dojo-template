@@ -1,6 +1,6 @@
 context_file = $(word 1,$(abspath $(MAKEFILE_LIST)))
 tasks_files = $(abspath $(MAKEFILE_LIST))
-context_name = $(shell echo $(dir $(context_file)) | sed -E "s/^.*dojos\/(.*)\/(.*)\/$$/\2/")
+context_name = $(shell echo $(dir $(context_file)) | sed -E "s/^.*\/(.*)\/(.*)\/$$/\1 - \2/")
 
 .PHONY: help description
 .DEFAULT_GOAL := help
