@@ -9,7 +9,7 @@ version ?= 3.7.4# default version if unspecified
 sources: ${folder}/dojo.py
 tests: ${folder}/tests.py
 console_config: ;
-dependencies: ;
+dependencies: ${folder}/.gitignore
 
 ${folder}/dojo.py: ${folder}
 	@echo "Create source file"
@@ -18,3 +18,7 @@ ${folder}/dojo.py: ${folder}
 ${folder}/tests.py: ${folder}
 	@echo "Create tests file"
 	@cp ${setup_base}/template/tests.py ${folder}/
+
+${folder}/.gitignore: ${folder}
+	@echo "Setting .gitignore file"
+	@cp ${setup_base}/template/.gitignore ${folder}/
