@@ -1,7 +1,7 @@
 -include setup_link/run_tasks.mk
 -include setup_link/prerequisites.mk
 
-setup_base := setup_link
+setup_base := $(realpath setup_link)
 image_tag := [IMAGE_TAG]
 image_id := $(shell docker images -q $(image_tag))
 run = $(call docker,[LANGUAGE],[VERSION],$(1))
@@ -13,7 +13,7 @@ build: $(if $(strip $(image_id)),,build_image)
 
 build_image:
 	@echo "Building image for '${image_tag}'"
-	@docker build ${setup_base}/build --build-arg VERSION=[VERSION] -t ${image_tag}
+	@docker build ${setup_base}/[LANGUAGE]/build --build-arg VERSION=[VERSION] -t ${image_tag}
 
 setup_link:
 	@echo
