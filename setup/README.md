@@ -4,15 +4,17 @@
 
 ## Howto
 
-### To list the available task, run:
-  - `make` or `make test`
+### To list the available tasks or run the tests:
+  - `make`
+  - `make test`
 
-## Problema: [[PROBLEM]]([URL])
+## Problem: [[PROBLEM]]([URL])
 
 ## Retro
 
-#### O que aprendemos hoje?
-
-#### O que foi bom
-
-#### O que podemos melhorar
+#### What did we learn?
+  -
+#### What went well?
+  -
+#### What could be better
+  -
