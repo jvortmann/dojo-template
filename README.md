@@ -1,56 +1,85 @@
-# DOJO-POA
+# DOJO-TEMPLATE
 
-> Repositório para amarzenamento dos códigos criados em Dojos realizados na Globo.com de Porto Alegre
+> This repo is a dojo-template that generates setup for dojos with basic test setup running with docker.
+> The languages already supported are on setup folder. Each folder defines the base of the dojo folder setup.
+> The `build` folder holds the Dockerfile and the `template` the initial files needed by each language.
 
+Fork this repository to your organization and dojo away :)
 
-#### Manifesto
+Jump to the [usage](#usage) section for the details of creating a dojo folder.
 
-1. O dojo tem duração de 1h30.
-2. Uma dupla fica responsável pelo código. Uma pessoa coda e a outra auxilia (Piloto e copiloto).
-3. A dupla rotaciona a cada 7 minutos. O copiloto vira piloto e outra pessoa entra como copiloto.
-4. No começo é acordado se apenas a dupla opina no código, ou se os demais também podem.
-5. Ao final há uma retrospectiva para levantar os pontos positivos e negativos do dojo, e definir os próximos organizadores.
+### Guidelines
 
-#### Agenda dos encontros
+1. The Dojo will have duration of 1h30.
+2. A pair will be responsible for the code. One codes and the other person helps (Pilot and co-pilot).
+3. The pair rotates every 7 minutes. The copilot turn into pilot and another person is chosen as the new copilot.
+4. In the beginning, an accord regarding if everybody gives suggestions or just the pair does it.
+5. In the end, a short retrospective is done to evaluate the pros and cons of the session and to define the next
+organizers.
 
-> As tecnologias utilizadas devem ser definidas antes do Dojo. Um participante deve se responsabilizar por montar o ambiente necessário para a execução do código para as tecnologias definidas. O repositório provê uma série de task para auxiliar o setup e gerar pastas consistentes de problemas (`make help`)
+### Session Schedule
 
-> O problema deve ser votado antes do dojo. A divulgação deve acontecer apenas na hora do dojo.
+> The problem should be decided prior to the session.
 
-	- Resolução do problema [55 min]
-	- Retrospectiva [5 min]
+	- Problem solving and coding [55 min]
+	- Retrospective [5 min]
 
-#### Formatos
+### Formats
 
-	- `Randori`: Todos participam. É proposto um problema a ser resolvido e a programação é realizada em apenas uma máquina, por pares. Para esse formato é imprescindível a utilização de `TDD` e `baby steps`.
+	- `Randori`: Everybody participate. A problem is proposed and all coding happens in a single machine in pairs that
+  change every couple of minutes. It is essential to use `TDD` and `baby steps`.
 
-	- `Kake`: Semelhante ao Randori, porém há várias duplas trabalhando simultaneamente. A cada turno as duplas são trocadas, promovendo a integração entre todos os participantes do evento. Nesse formato um conhecimento mais avançado dos participantes é necessário.
+	- `Kake`: Similar to the Randori but there are many pair working simultaneously. At each turn, the pairs change to
+  promote integration between all participants. In this format, it is helpful to have more knowledge on the technology
+  and/or the problem.
 
-	- `Kata`: Nesse formato existe a figura do apresentador. Ele deve demonstrar uma solução pronta, previamente desenvolvida.
+	- `Kata`: In this format there is the presence of a presenter. This person demonstrates a solution to the problem
+  previously done and improvements are then worked on. The goal is to practice a specific technique, change or
+  refactor.
 
-#### Setup de novos problemas (se a linguagem tem setup)
+### Setup of new dojos
 
-`make language='linguagem' url='http://dojopuzzles.com/problemas/exibe/{problem}/' [problem='Nome do Problema']`
+For the languages that already have a setup, use the following make command format to generate a problem folder with
+language files and a README to complete the problem description. Things inside '[ ]' are optional. Accepted parameters
+are `language`, `url`, `problem` and `version`. The problem title is mandatory and is either generated from the last
+part of the `url` or from the specified `problem` title. This is used to create the problem folder inside the dojos
+folder, with the path format `dojos/{problem-title}/{language}`. This way different dojos can be generated for
+different languages.
 
-Ex: `make language='linguagem' url='http://dojopuzzles.com/problemas/exibe/jokenpo/'`
+`make language='language' url='http://dojopuzzles.com/problems/{problem}' [problem='Problem title']`
 
 or
 
-Ex: `make language='linguagem' problem='Nome do Problema'`
+`make language='language' problem='Problem title'`
 
-#### Setup de novos problemas (quando a linguagem não tem setup)
-`make setup url='http://dojopuzzles.com/problemas/exibe/{problem}/' [problem='Nome do Problema']`
-
-Ex: `make setup url='http://dojopuzzles.com/problemas/exibe/jokenpo/'`
+Ex: `make language='python' url='http://dojopuzzles.com/problems/jokenpo'`
 
 or
 
-Ex: `make setup problem='Nome do Problema'`
+Ex: `make language='python' problem='Poker Game'`
 
-#### Precisa de ajusta com as tasks?
+`url` or `problem` is required to specify the problem folder. The `language` is optional, it uses a default if not
+specified. `version` is the language version to be used and it also uses a default if not specified.
+
+A couple of default tasks are generated for each dojo. Inside the generated folder run `make` or `make help` to list
+the options. By default all available language setup provide the following `make` tasks:
+- `build`: builds the Docker image for the problem if unavailable
+- `test`: run the tests
+- `console`: opens a language console session
+- `login`: run a shell session into the container
+- `help`(default): show the help
+- `description`: show helper header with problem title and language used
+
+#### Need help with available tasks?
 `make help`
 
-#### Onde encontrar os problemas para resolver
+#### Extra things
+There are two extra tasks to list all previous dojo dates as well print a histogram of dojos per month. Both need
+`dateutils` and will print helper message if not available. Check the tasks:
+`make dates`
+`make histogram`
+
+#### Where to find problems:
 
 	- http://dojopuzzles.com/
 	- https://exercism.io/
