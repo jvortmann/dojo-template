@@ -23,13 +23,13 @@ canonical_problem = $(shell echo ${problem} | tr '[:upper:]' '[:lower:]'| tr ' '
 
 export folder = ${base_path}/${canonical_problem}/${language}
 
-## {no task}: [default] build, create and setup problem folder [> make url='http://dojopuzzles.com/problemas/exibe/{problem}/ language=python' or > make problem='Problem name' language=python]
+## {no task}: [default] build, create and setup problem folder [> make url='http://dojopuzzles.com/problems/{problem}/ language=python' or > make problem='Problem name' language=python]
 all: create build setup
 
-## create: only create problem folder [> make create url='http://dojopuzzles.com/problemas/exibe/{problem}/ language=python' or > make create problem='Problem name language=python']
+## create: only create problem folder [> make create url='http://dojopuzzles.com/problems/{problem}/ language=python' or > make create problem='Problem name language=python']
 create: ${folder} ${folder}/README.md
 
-## setup: create and setup problem folder for a particular language [> make setup url='http://dojopuzzles.com/problemas/exibe/{problem}/ language=python' or > make setup problem='Problem Name' language=python]
+## setup: create and setup problem folder for a particular language [> make setup url='http://dojopuzzles.com/problems/{problem}/ language=python' or > make setup problem='Problem Name' language=python]
 setup: create
 	@$(MAKE) setup -C setup/${language}
 
