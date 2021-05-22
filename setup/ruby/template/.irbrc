@@ -1,7 +1,6 @@
 # -*- encoding:  utf-8 -*-
 $KCODE = "u" unless defined?(Encoding)
 require "rubygems"
-require "pp"
 require "irb/ext/save-history"
 
 #History configuration
