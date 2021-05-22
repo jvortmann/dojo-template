@@ -37,6 +37,7 @@ organizers.
   previously done and improvements are then worked on. The goal is to practice a specific technique, change or
   refactor.
 
+## Usage
 ### Setup of new dojos
 
 For the languages that already have a setup, use the following make command format to generate a problem folder with
