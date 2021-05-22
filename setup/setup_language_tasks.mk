@@ -14,11 +14,10 @@ all: build setup
 ## setup: setup problem folder
 setup: folder_exists sources tests console_config ${folder}/Makefile ${folder}/setup_link ${folder}/.${language}-version ${folder}/.tool-versions badge dependencies
 
-folder_exists:
-	$(if ${folder},,${FOLDER_ERROR})
+folder_exists: $(if ${folder},,${FOLDER_ERROR})
 
 ## build: build docker image
-build: $(if $(strip $(image_id)),,build_image)
+build: $(if $(strip ${image_id}),,build_image)
 
 build_image:
 	@echo "Building image for '${image_tag}' (you can specify the version using: version=${version})"
