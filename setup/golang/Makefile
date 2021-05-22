@@ -2,7 +2,7 @@
 
 ##>> setup problem with golang
 language := golang
-version ?= 1.13.3# default version if unspecified
+version ?= $(shell grep ${language} ../../.tool-versions | cut -f2 -d' ' | tr -d ' ')
 
 -include ../setup_language_tasks.mk
 

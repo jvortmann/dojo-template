@@ -2,7 +2,7 @@
 
 ##>> setup problem with ruby
 language := ruby
-version ?= 2.6.5# default version if unspecified
+version ?= $(shell grep ${language} ../../.tool-versions | cut -f2 -d' ' | tr -d ' ')
 
 -include ../setup_language_tasks.mk
 

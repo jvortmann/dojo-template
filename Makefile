@@ -3,6 +3,7 @@ context_file = $(word 1,$(abspath $(MAKEFILE_LIST)))
 context_name = "dojo"
 
 language ?= python# default language to python
+version ?= $(shell grep ${language} .tool-versions | cut -f2 -d' ' | tr -d ' ')
 base_path ?= ${CURDIR}/dojos
 setup_base := ${CURDIR}/setup
 
