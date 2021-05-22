@@ -23,9 +23,9 @@ build_image:
 	@echo "Building image for '${image_tag}' (you can specify the version using: version=${version})"
 	@docker build ${setup_base}/build/ --build-arg VERSION=${version} -t ${image_tag}
 
-badge: $(if $(shell grep -E "\[(LANGUAGE|VERSION)\]" ${folder}/README.md),generate_badge,)
+badge: $(if $(shell grep -Es "\[(LANGUAGE|VERSION)\]" ${folder}/README.md),generate_badge,)
 
-generate_badge: ${folder}/README.md
+generate_badge:
 	@echo "Setting ${language} badge"
 	@sed -i .bkp -e "s/\\[LANGUAGE\\]/${language}/g" -e "s/\\[VERSION\\]/${version}/g" "${folder}/README.md"
 	@rm ${folder}/README.md.bkp
