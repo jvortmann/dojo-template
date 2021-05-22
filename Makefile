@@ -17,13 +17,13 @@ PROBLEM_ERROR = $(error "Problem name was not defined. Use 'url="http://some_url
 ifeq (${url},)
 problem := $(shell echo ${problem} | tr '[:upper:]' '[:lower:]' | tr ' ' '_')
 else
-override problem = $(shell echo "${url}" | sed -E "s/\/([^/]+)\/?$$/ \1/" | awk '{print $$2}')
+override problem := $(shell echo "${url}" | sed -E "s/\/([^/]+)\/?$$/ \1/" | awk '{print $$2}')
 export problem
 endif
 
-canonical_problem = $(shell echo ${problem} | tr '[:upper:]' '[:lower:]'| tr ' ' '_')
+canonical_problem := $(shell echo ${problem} | tr '[:upper:]' '[:lower:]'| tr ' ' '_')
 
-export folder = ${base_path}/${canonical_problem}/${language}
+export folder := ${base_path}/${canonical_problem}/${language}
 
 ## {no task}: [default] build, create and setup problem folder [> make url='http://dojopuzzles.com/problems/{problem}/ language=python' or > make problem='Problem name' language=python]
 all: create build setup
