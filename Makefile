@@ -1,8 +1,9 @@
-##>> setup dojo (accepts 'url', 'problem' and 'language (defaults to python)' [with version] params)
+##>> setup dojo (accepts 'url', 'problem' and 'language (defaults to first on .tool-versions)' [with version] params)
 context_file = $(word 1,$(abspath $(MAKEFILE_LIST)))
 context_name = "dojo"
 
-language ?= python# default language to python
+# default language is the first on .tool-versions
+language ?= $(shell head -n1 .tool-versions | cut -f1 -d' ' | tr -d ' ')
 version ?= $(shell grep ${language} .tool-versions | cut -f2 -d' ' | tr -d ' ')
 base_path ?= ${CURDIR}/dojos
 setup_base := ${CURDIR}/setup
