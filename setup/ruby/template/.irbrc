@@ -6,9 +6,9 @@ require "irb/ext/save-history"
 #History configuration
 IRB.conf[:SAVE_HISTORY] = 100
 IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
+IRB.conf.merge! :PROMPT_MODE  => :SIMPLE, :AUTO_INDENT  => true
 
 alias q exit
-IRB.conf.merge! :PROMPT_MODE  => :SIMPLE, :AUTO_INDENT  => true
 
 begin
   require("awesome_print")
