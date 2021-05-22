@@ -28,15 +28,15 @@ badge: ${folder}/README.md
 	@sed -i .bkp -e "s/\\[LANGUAGE\\]/${language}/g" -e "s/\\[VERSION\\]/${version}/g" "${folder}/README.md"
 	@rm ${folder}/README.md.bkp
 
-${folder}/.${language}-version: ${folder}
+${folder}/.${language}-version:
 	@echo "Setting ${language} version file"
 	@echo ${version} > ${folder}/.${language}-version
 
-${folder}/.tool-versions: ${folder}
+${folder}/.tool-versions:
 	@echo "Setting ${language} in tool versions file"
 	@echo "${language} ${version}" > ${folder}/.tool-versions
 
-${folder}/Makefile: ${folder}
+${folder}/Makefile:
 	@echo "Setting Makefile"
 	@sed -e "s#\\[IMAGE_TAG\\]#${image_tag}#g" \
 		-e "s/\\[LANGUAGE\\]/${language}/g" \
@@ -44,5 +44,5 @@ ${folder}/Makefile: ${folder}
 		"${setup_base}/../template/Makefile" > ${folder}/Makefile
 	@cat "${setup_base}/template/Makefile" >> ${folder}/Makefile
 
-${folder}/setup_link: ${folder}
+${folder}/setup_link:
 	@ln -sf ../../../setup ${folder}/setup_link

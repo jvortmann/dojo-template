@@ -44,7 +44,7 @@ ${folder}:
 	@echo "Creating '${problem}' for ${language} at '${folder}'"
 	@mkdir -p ${folder}
 
-${folder}/README.md: ${folder}
+${folder}/README.md:
 	@echo "Setting Readme"
 	@sed "s#\\[DATA\\]#$(shell date "+%Y-%m-%d %H:%M:%S")#g" "${setup_base}/README.md" | \
 	sed "s#\\[PROBLEM\\]#${problem}#g" | \

@@ -11,14 +11,14 @@ tests: ;
 console_config: ;
 dependencies: ${folder}/Cargo.toml ${folder}/.gitignore
 
-${folder}/src: ${folder}
+${folder}/src:
 	@echo "Setting Source folder"
 	@cp -r ${setup_base}/template/src ${folder}/
 
-${folder}/Cargo.toml: ${folder}
+${folder}/Cargo.toml:
 	@echo "Setting Manifest file"
 	@cp ${setup_base}/template/Cargo.toml ${folder}/
 
-${folder}/.gitignore: ${folder}
+${folder}/.gitignore:
 	@echo "Setting .gitignore file"
 	@cp ${setup_base}/template/.gitignore ${folder}/
