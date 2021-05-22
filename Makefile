@@ -98,7 +98,7 @@ how_to:
 	@echo "How to:"
 	@echo
 	@echo "Examples of full command to create a problem folder for a particular version of ruby language"
-	@echo "> make url='http://dojopuzzles.com/problemas/exibe/{problem}/' language=ruby version=2.6.0"
+	@echo "> make url='http://dojopuzzles.com/problems/{problem}' language=ruby version=2.6.0"
 	@echo "or"
 	@echo "> make problem='Problem name' language=ruby version=2.6.0"
 	@echo
