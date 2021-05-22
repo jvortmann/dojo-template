@@ -2,7 +2,7 @@
 
 ##>> setup problem with rust
 language := rust
-version = 1.38.0# default version if unspecified
+version ?= $(shell grep ${language} ../../.tool-versions | cut -f2 -d' ' | tr -d ' ')
 
 -include ../setup_language_tasks.mk
 

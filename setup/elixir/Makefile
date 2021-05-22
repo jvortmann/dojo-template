@@ -2,7 +2,7 @@
 
 ##>> setup problem with elixir
 language := elixir
-version ?= 1.9.2# default version if unspecified
+version ?= $(shell grep ${language} ../../.tool-versions | cut -f2 -d' ' | tr -d ' ')
 
 -include ../setup_language_tasks.mk
 

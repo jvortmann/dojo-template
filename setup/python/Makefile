@@ -2,7 +2,7 @@
 
 ##>> setup problem with python
 language := python
-version ?= 3.7.4# default version if unspecified
+version ?= $(shell grep ${language} ../../.tool-versions | cut -f2 -d' ' | tr -d ' ')
 
 -include ../setup_language_tasks.mk
 
