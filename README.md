@@ -74,8 +74,10 @@ the options. By default all available language setup provide the following `make
 `make help`
 
 #### Extra things
-There are two extra tasks to list all previous dojo dates as well print a histogram of dojos per month. Both need
-`dateutils` and will print helper message if not available. Check the tasks:
+There are some extra tasks to list all previous dojos, dojo dates and to print a histogram of dojos per month as well.
+These task are based on the information automatically generated on each problem's README file.
+Both date related tasks (`dates` and `histogram`) need `dateutils` and will print helper message if not available. Check the tasks:
+`make dojos`
 `make dates`
 `make histogram`
 
