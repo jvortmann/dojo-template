@@ -2,7 +2,7 @@
 
 setup_base := ${CURDIR}
 image_tag := dojo/${language}:${version}
-image_id := $(shell docker images -q $(image_tag))
+image_id := $(shell docker images -q ${image_tag})
 
 FOLDER_ERROR = $(error "Folder was not specified. Use 'folder="absolute/path/to/problem/destination" to point to an existing folder")
 
