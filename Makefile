@@ -62,7 +62,7 @@ histogram: dateutils
 	@cat <($(MAKE) dojos_dates | cut -f1,2 -d'-') <($(MAKE) date_range) | sort | uniq -c | while read -r amount date; do echo "$$date $$(($$amount - 1)) |`jot -b '*' - 0 $$(($$amount - 1)) | xargs | tr -d ' ' | cut -c2-`"; done | xargs printf "\033[34m%-8s\033[37m%-2d\033[32m%s\033[0m\n"
 
 dojos:
-	@grep "# DOJO" -R ${base_path} | sed "s/.*dojos\/\(.*\)\/\(.*\)\/README.md:# DOJO \(.*\)$$/\3 \1 \2/"
+	@grep "# DOJO" -R ${base_path} --exclude-dir=setup_link | sed "s/.*dojos\/\(.*\)\/\(.*\)\/README.md:# DOJO \(.*\)$$/\3 \1 \2/"
 
 dojos_dates:
 	@$(MAKE) dojos | cut -f1 -d' ' | sort
