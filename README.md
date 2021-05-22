@@ -40,6 +40,12 @@ organizers.
 ## Usage
 ### Setup of new dojos
 
+The default `make` task `create` the problem folder, `setup`s its files and 'build's the image to be used.
+If you want just some of those task done individually, use the following:
+- `create`: just creates the problem folder and a template README
+- `setup`: run `create` and setup language template files inside the created folder
+- `build` just build the container image to be used for language
+
 For the languages that already have a setup, use the following make command format to generate a problem folder with
 language files and a README to complete the problem description. Things inside '[ ]' are optional. Accepted parameters
 are `language`, `url`, `problem` and `version`. The problem title is mandatory and is either generated from the last
