@@ -14,3 +14,5 @@ IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
 IRB.conf.merge! :PROMPT_MODE  => :SIMPLE, :AUTO_INDENT  => true
 
 alias q exit
+
+Dir["lib/**/*.rb"].each { |f| load f }
