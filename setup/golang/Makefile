@@ -12,14 +12,14 @@ tests: ${folder}/main_test.go;
 console_config: ;
 dependencies: ${folder}/go.mod;
 
-${folder}/main.go: ${folder}
+${folder}/main.go:
 	@echo "Setting example source file"
 	@cp ${setup_base}/template/main.go ${folder}/
 
-${folder}/main_test.go: ${folder}
+${folder}/main_test.go:
 	@echo "Setting example test file"
 	@cp ${setup_base}/template/main_test.go ${folder}/
 
-${folder}/go.mod: ${folder}
+${folder}/go.mod:
 	@echo "Setting golang modules"
 	@sed -e "s/\\[VERSION\\]/${short_version}/g" "${setup_base}/template/go.mod" > ${folder}/go.mod

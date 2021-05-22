@@ -11,14 +11,14 @@ tests: ${folder}/spec
 console_config: ${folder}/.irbrc
 dependencies: ;
 
-${folder}/lib: ${folder}
+${folder}/lib:
 	@echo "Setting Source folder"
 	@cp -r ${setup_base}/template/lib ${folder}/
 
-${folder}/spec: ${folder}
+${folder}/spec:
 	@echo "Setting Test folder"
 	@cp -r ${setup_base}/template/spec ${folder}/
 
-${folder}/.irbrc: ${folder}
+${folder}/.irbrc:
 	@echo "Setting Console config"
 	@cp ${setup_base}/template/.irbrc ${folder}/.irbrc

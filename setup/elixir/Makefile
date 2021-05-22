@@ -13,14 +13,14 @@ tests: ${folder}/test
 console_config: ;
 dependencies: ${folder}/mix.exs
 
-${folder}/lib: ${folder}
+${folder}/lib:
 	@echo "Setting Source folder"
 	@cp -r ${setup_base}/template/lib ${folder}/
 
-${folder}/test: ${folder}
+${folder}/test:
 	@echo "Setting Test folder"
 	@cp -r ${setup_base}/template/test ${folder}/
 
-${folder}/mix.exs: ${folder}
+${folder}/mix.exs:
 	@echo "Setting depedencies"
 	@cp ${setup_base}/template/mix.exs ${folder}/
