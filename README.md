@@ -8,7 +8,7 @@ Fork this repository to your organization and dojo away :)
 
 Jump to the [usage](#usage) section for the details of creating a dojo folder.
 
-### Guidelines
+## Guidelines
 
 1. The Dojo will have duration of 1h30.
 2. A pair will be responsible for the code. One codes and the other person helps (Pilot and co-pilot).
@@ -17,14 +17,14 @@ Jump to the [usage](#usage) section for the details of creating a dojo folder.
 5. In the end, a short retrospective is done to evaluate the pros and cons of the session and to define the next
 organizers.
 
-### Session Schedule
+## Session Schedule
 
 > The problem should be decided prior to the session.
 
 	- Problem solving and coding [55 min]
 	- Retrospective [5 min]
 
-### Formats
+## Formats
 
 	- `Randori`: Everybody participate. A problem is proposed and all coding happens in a single machine in pairs that
   change every couple of minutes. It is essential to use `TDD` and `baby steps`.
@@ -70,10 +70,10 @@ the options. By default all available language setup provide the following `make
 - `help`(default): show the help
 - `description`: show helper header with problem title and language used
 
-#### Need help with available tasks?
+### Need help with available tasks?
 `make help`
 
-#### Extra things
+### Extra things
 There are some extra tasks to list all previous dojos, dojo dates and to print a histogram of dojos per month as well.
 These task are based on the information automatically generated on each problem's README file.
 Both date related tasks (`dates` and `histogram`) need `dateutils` and will print helper message if not available. Check the tasks:
