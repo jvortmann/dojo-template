@@ -1,4 +1,4 @@
-.PHONY: all setup folder_exists sources tests console_config dependencies build build_image badge
+.PHONY: all setup folder_exists sources tests console_config dependencies build build_image badge generate_badge
 
 setup_base := ${CURDIR}
 image_tag := dojo/${language}:${version}
@@ -23,7 +23,9 @@ build_image:
 	@echo "Building image for '${image_tag}' (you can specify the version using: version=${version})"
 	@docker build ${setup_base}/build/ --build-arg VERSION=${version} -t ${image_tag}
 
-badge: ${folder}/README.md
+badge: $(if $(shell grep -E "\[(LANGUAGE|VERSION)\]" ${folder}/README.md),generate_badge,)
+
+generate_badge: ${folder}/README.md
 	@echo "Setting ${language} badge"
 	@sed -i .bkp -e "s/\\[LANGUAGE\\]/${language}/g" -e "s/\\[VERSION\\]/${version}/g" "${folder}/README.md"
 	@rm ${folder}/README.md.bkp
