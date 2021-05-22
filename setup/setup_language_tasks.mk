@@ -34,7 +34,7 @@ ${folder}/.${language}-version: ${folder}
 	@echo ${version} > ${folder}/.${language}-version
 
 ${folder}/.tool-versions: ${folder}
-	@echo "Setting ${language} in tools version file"
+	@echo "Setting ${language} in tool versions file"
 	@echo "${language} ${version}" > ${folder}/.tool-versions
 
 ${folder}/Makefile: ${folder}
