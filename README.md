@@ -26,16 +26,17 @@ organizers.
 
 ## Formats
 
-	- `Randori`: Everybody participate. A problem is proposed and all coding happens in a single machine in pairs that
-  change every couple of minutes. It is essential to use `TDD` and `baby steps`.
+### `Randori`
 
-	- `Kake`: Similar to the Randori but there are many pair working simultaneously. At each turn, the pairs change to
-  promote integration between all participants. In this format, it is helpful to have more knowledge on the technology
-  and/or the problem.
+Everybody participate. A problem is proposed and all coding happens in a single machine in pairs that change every couple of minutes. It is essential to use `TDD` and `baby steps`.
 
-	- `Kata`: In this format there is the presence of a presenter. This person demonstrates a solution to the problem
-  previously done and improvements are then worked on. The goal is to practice a specific technique, change or
-  refactor.
+### `Kake`
+
+Similar to the Randori but there are many pair working simultaneously. At each turn, the pairs change to promote integration between all participants. In this format, it is helpful to have more knowledge on the technology and/or the problem.
+
+### `Kata`
+
+In this format there is the presence of a presenter. This person demonstrates a solution to the problem previously done and improvements are then worked on. The goal is to practice a specific technique, change or refactor.
 
 ## Usage
 ### Setup of new dojos
