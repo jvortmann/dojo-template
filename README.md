@@ -13,7 +13,7 @@ Jump to the [usage](#usage) section for the details of creating a dojo folder.
 1. The Dojo will have duration of 1h30.
 2. A pair will be responsible for the code. One codes and the other person helps (Pilot and co-pilot).
 3. The pair rotates every 7 minutes. The copilot turn into pilot and another person is chosen as the new copilot.
-4. In the beginning, an accord regarding if everybody gives suggestions or just the pair does it.
+4. In the beginning, an agreement regarding if everybody gives suggestions or just the pair does it.
 5. In the end, a short retrospective is done to evaluate the pros and cons of the session and to define the next
 organizers.
 
