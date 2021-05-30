@@ -35,7 +35,7 @@ create: ${folder} ${folder}/README.md
 setup: create
 	@$(MAKE) setup -C setup/${language}
 
-## build: build an language image [> make build language=ruby version=2.6.0]
+## build: build a language image [> make build language=ruby version=2.6.0]
 build:
 	@$(MAKE) build -C setup/${language}
 
